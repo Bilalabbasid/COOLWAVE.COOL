@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
 import { StaticPage } from '@/components/StaticPage';
+import { pageMeta } from '@/lib/meta';
 import { SITE } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: 'Terms of Use',
   description: 'The terms for using CoolWave calculators and guides, including limits on how results should be relied on.',
-  alternates: { canonical: '/terms' },
-};
+  path: '/terms',
+});
 
 export default function TermsPage() {
   return (

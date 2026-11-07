@@ -5,6 +5,7 @@ import { PostCard } from '@/components/Cards';
 import { BlogCategoryNav } from '@/components/BlogCategoryNav';
 import { CATEGORIES, getCategory } from '@/lib/categories';
 import { postsInCategory } from '@/lib/registry';
+import { pageMeta } from '@/lib/meta';
 
 export const dynamicParams = false;
 
@@ -17,11 +18,11 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps<'/blog/category/[slug]'>): Promise<Metadata> {
   const cat = getCategory((await params).slug);
   if (!cat) return {};
-  return {
+  return pageMeta({
     title: `${cat.name} Guides`,
-    description: `Guides on ${cat.name.toLowerCase()}: ${cat.short}`.slice(0, 155),
-    alternates: { canonical: `/blog/category/${cat.slug}` },
-  };
+    description: `Plain-English guides on ${cat.name.toLowerCase()}: ${cat.short}`.slice(0, 155),
+    path: `/blog/category/${cat.slug}`,
+  });
 }
 
 export default async function BlogCategoryPage({ params }: PageProps<'/blog/category/[slug]'>) {

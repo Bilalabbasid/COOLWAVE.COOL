@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
 import { StaticPage } from '@/components/StaticPage';
+import { pageMeta } from '@/lib/meta';
 import { SITE } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: 'Affiliate Disclosure',
   description: 'How CoolWave earns money from affiliate links and ads, and why it never changes our calculations.',
-  alternates: { canonical: '/affiliate-disclosure' },
-};
+  path: '/affiliate-disclosure',
+});
 
 export default function AffiliateDisclosurePage() {
   return (

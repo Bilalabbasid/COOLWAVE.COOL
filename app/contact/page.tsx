@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
 import { StaticPage } from '@/components/StaticPage';
+import { pageMeta } from '@/lib/meta';
 import { SITE } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: 'Contact CoolWave',
   description: 'Report an error, suggest a calculator or ask a question. Email the CoolWave editorial team.',
-  alternates: { canonical: '/contact' },
-};
+  path: '/contact',
+});
 
 export default function ContactPage() {
   return (

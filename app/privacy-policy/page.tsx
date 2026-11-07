@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
 import { StaticPage } from '@/components/StaticPage';
+import { pageMeta } from '@/lib/meta';
 import { SITE } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: 'Privacy Policy',
   description: 'How CoolWave handles data: calculations run in your browser, what cookies are used for advertising, and your choices.',
-  alternates: { canonical: '/privacy-policy' },
-};
+  path: '/privacy-policy',
+});
 
 export default function PrivacyPage() {
   return (

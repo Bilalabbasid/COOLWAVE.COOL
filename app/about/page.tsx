@@ -1,13 +1,14 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { StaticPage } from '@/components/StaticPage';
+import { pageMeta } from '@/lib/meta';
 import { SITE } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: 'About CoolWave and Our Editorial Standards',
   description: 'Who writes CoolWave, how we choose formulas and sources, and how every calculator is tested before it goes live.',
-  alternates: { canonical: '/about' },
-};
+  path: '/about',
+});
 
 export default function AboutPage() {
   return (

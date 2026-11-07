@@ -14,8 +14,8 @@ const LEGAL = [
 export function SiteFooter() {
   return (
     <footer className="mt-16 border-t border-border bg-surface">
-      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 sm:grid-cols-3">
-        <div>
+      <div className="mx-auto grid max-w-6xl grid-cols-2 gap-x-6 gap-y-6 px-4 py-8 sm:grid-cols-3 sm:gap-8 sm:py-10">
+        <div className="col-span-2 sm:col-span-1">
           <p className="flex items-center gap-2 font-bold">
             <LogoMark size={24} /> {SITE.name}
           </p>
@@ -23,16 +23,16 @@ export function SiteFooter() {
         </div>
         <nav aria-label="Calculator categories">
           <p className="font-semibold">Calculators</p>
-          <ul className="mt-2 space-y-1.5 text-sm">
+          <ul className="mt-1 text-sm">
             {CATEGORIES.map((c) => (
               <li key={c.slug}>
-                <Link href={`/category/${c.slug}`} className="text-muted hover:text-brand">
+                <Link href={`/category/${c.slug}`} className="inline-flex min-h-11 items-center text-muted underline-offset-2 hover:text-brand hover:underline">
                   {c.name}
                 </Link>
               </li>
             ))}
             <li>
-              <Link href="/blog" className="text-muted hover:text-brand">
+              <Link href="/blog" className="inline-flex min-h-11 items-center text-muted underline-offset-2 hover:text-brand hover:underline">
                 Guides
               </Link>
             </li>
@@ -40,10 +40,10 @@ export function SiteFooter() {
         </nav>
         <nav aria-label="Company">
           <p className="font-semibold">Company</p>
-          <ul className="mt-2 space-y-1.5 text-sm">
+          <ul className="mt-1 text-sm">
             {LEGAL.map((l) => (
               <li key={l.href}>
-                <Link href={l.href} className="text-muted hover:text-brand">
+                <Link href={l.href} className="inline-flex min-h-11 items-center text-muted underline-offset-2 hover:text-brand hover:underline">
                   {l.label}
                 </Link>
               </li>

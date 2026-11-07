@@ -1,0 +1,16 @@
+[
+  {
+    "post": "what-is-heat-index",
+    "kind": "featured",
+    "file": "what-is-heat-index.webp",
+    "prompt": "A glass thermometer resting in bright summer shade next to a glass of iced water on a pale wooden table, soft daylight, minimal composition, cool blue and teal palette, no text, no logos, no people",
+    "alt": "Thermometer in bright summer shade beside a glass of iced water, cool blue and teal tones"
+  },
+  {
+    "post": "what-is-heat-index",
+    "kind": "inline",
+    "file": "what-is-heat-index-inline.webp",
+    "prompt": "Heat shimmer over a quiet suburban street on a humid summer afternoon, hazy light, minimal, cool blue and teal colour grading, no text, no logos, no people",
+    "alt": "Hazy heat shimmer over a quiet street on a humid summer afternoon"
+  }
+]

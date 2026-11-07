@@ -52,6 +52,14 @@ export const UNITS = {
   },
   /** A temperature difference (no offset). */
   tempDelta: { imperial: '°F', metric: '°C', factor: 5 / 9 },
+  /** Air pressure. 1 inHg (conventional) = 3.386389e3 Pa = 33.86389 hPa (NIST SP 811, App. B.8). */
+  airPressure: { imperial: 'inHg', metric: 'hPa', factor: 33.86389 },
+  /** Large heat quantity. 1 MMBtu = 10⁶ Btu(IT) × 1,055.05585262 J ÷ 3.6×10⁶ J/kWh = 293.07107 kWh (NIST SP 811 Btu(IT)). */
+  heatEnergy: { imperial: 'MMBtu', metric: 'kWh', factor: 293.07107017 },
+  /** Gas energy. 1 therm = 100,000 Btu(IT) (EIA) = 29.307107 kWh (NIST SP 811 Btu(IT)). */
+  gasEnergy: { imperial: 'therms', metric: 'kWh', factor: 29.307107017 },
+  /** Degree days (a temperature difference × days, no offset): 1 °F·day = 5/9 °C·day (K·day), exact. */
+  degreeDays: { imperial: '°F·days', metric: '°C·days', factor: 5 / 9 },
 } satisfies Record<string, UnitDef>;
 
 export type UnitKind = keyof typeof UNITS;

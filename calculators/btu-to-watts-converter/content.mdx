@@ -1,0 +1,124 @@
+export const howTo = [
+  'Type the number you want to convert, for example 12000 from an air conditioner label.',
+  'Pick its unit. Choose BTU per hour for any AC, heat pump or heater rating, even if the label just says “BTU”.',
+  'Read the headline result, then the other equivalents (watts, kilowatts, tons, or kWh and Wh for energy).',
+  'To go the other way, enter the watts or kilowatts and choose W or kW as the unit.',
+]
+
+export const faq = [
+  {
+    q: 'How many watts is 12,000 BTU?',
+    a: '12,000 BTU per hour equals 3,516.85 watts, or about 3.52 kW. That is the cooling output of a 1 ton air conditioner, not the electricity it uses. A unit with an EER of 10 to 12 draws roughly 1,000 to 1,200 W.',
+  },
+  {
+    q: 'How do you convert BTU to watts?',
+    a: 'Multiply BTU per hour by 0.29307107 to get watts. To go from watts to BTU per hour, multiply by 3.41214, or divide by 0.29307107.',
+  },
+  {
+    q: 'How many BTU are in a kilowatt-hour?',
+    a: 'One kilowatt-hour is 3,412.14 BTU, which the U.S. Energy Information Administration rounds to 3,412 BTU. One BTU is therefore about 0.000293 kWh, or 0.293 Wh.',
+  },
+  {
+    q: 'Is BTU the same as BTU per hour?',
+    a: 'No. A BTU is an amount of energy, like a kilowatt-hour. BTU per hour is a rate, like a watt. Air conditioner and heater labels say “BTU” but mean BTU per hour, so convert them to watts, not to kWh.',
+  },
+  {
+    q: 'How many watts is 1 ton of air conditioning?',
+    a: 'One ton of cooling is 12,000 BTU per hour, which NIST lists as 3,516.853 watts, about 3.52 kW. A 3 ton central AC therefore moves about 10.55 kW of heat.',
+  },
+  {
+    q: 'How many BTU is a 1,500 watt space heater?',
+    a: 'A 1,500 W heater gives out about 5,118 BTU per hour. Electric resistance heaters turn almost all the power they draw into heat, so for them the electrical watts and the heat output are the same number.',
+  },
+]
+
+This converter turns BTU per hour into watts, kilowatts and tons of cooling, and back again. It also converts BTU as an amount of energy into watt-hours and kilowatt-hours. Use it to compare an American air conditioner rated in BTU with a European or Australian one rated in kW, to check a generator or solar setup, or just to make sense of a spec sheet.
+
+Most people who search “BTU to watts” are looking at an air conditioner, heat pump or heater. Those labels say “12,000 BTU”, but the number is really **BTU per hour**, a rate. That is why the converter starts on BTU/h.
+
+## BTU vs BTU/h: the difference that matters
+
+A **British thermal unit (BTU)** is an amount of energy: roughly the heat needed to warm one pound of water by 1 °F, according to the EIA. It sits in the same family as the joule, the watt-hour and the kilowatt-hour.
+
+**BTU per hour (BTU/h)** is how fast that energy moves. It sits in the same family as the watt and the kilowatt. A 12,000 BTU/h air conditioner can remove 12,000 BTU of heat from a room every hour it runs flat out.
+
+| You have | It measures | Convert it to |
+| --- | --- | --- |
+| BTU/h (AC, heater, furnace rating) | Power, a rate | W, kW or tons |
+| BTU (gas use, fuel content) | Energy, an amount | Wh or kWh |
+| W or kW | Power, a rate | BTU/h |
+| kWh (electric bill) | Energy, an amount | BTU |
+
+Mixing them up is the most common mistake on this topic. “12,000 BTU = 3.5 kWh” is wrong; 12,000 BTU/h is 3.5 kW, and it becomes 3.5 kWh only after running for one hour.
+
+## The conversion formulas
+
+The factors come from NIST Special Publication 811, the US government guide to SI units. The BTU used on HVAC equipment is the International Table BTU.
+
+<Formula>
+Watts = BTU/h × 0.29307107
+</Formula>
+
+<Formula>
+BTU/h = Watts × 3.41214
+</Formula>
+
+<Formula>
+Tons = BTU/h ÷ 12,000 (1 ton = 3,516.85 W)
+</Formula>
+
+<Formula>
+kWh = BTU × 0.00029307107 (1 kWh = 3,412.14 BTU)
+</Formula>
+
+- **0.29307107** is NIST’s figure for one BTU per hour in watts.
+- **3.41214** is simply 1 ÷ 0.29307107.
+- **12,000 BTU/h** is one ton of refrigeration, which NIST lists as 3,516.853 W.
+- Because one BTU per hour sustained for one hour is one BTU, the energy factor (BTU to Wh) is the same 0.29307107.
+
+## Worked example
+
+You are comparing a US mini split rated at 12,000 BTU with a UK model rated in kilowatts. Enter 12000 and choose BTU per hour.
+
+<WorkedExample slug="btu-to-watts-converter" inputs={{ value: 12000, from: 'btuh' }} />
+
+12,000 × 0.29307107 = **3,516.85 W**, or about 3.52 kW, which is exactly 1 ton. So a 3.5 kW split system is the same class of unit as a 12,000 BTU/h one. To size the unit for your room in the first place, use the <CalcLink slug="btu-calculator">BTU calculator</CalcLink> or the <CalcLink slug="mini-split-size-calculator">mini split size calculator</CalcLink>.
+
+## BTU/h to watts conversion table
+
+| BTU/h | Watts | kW | Tons |
+| --- | --- | --- | --- |
+| 5,000 | 1,465.36 | 1.47 | 0.42 |
+| 6,000 | 1,758.43 | 1.76 | 0.5 |
+| 8,000 | 2,344.57 | 2.34 | 0.67 |
+| 9,000 | 2,637.64 | 2.64 | 0.75 |
+| 10,000 | 2,930.71 | 2.93 | 0.83 |
+| 12,000 | 3,516.85 | 3.52 | 1 |
+| 18,000 | 5,275.28 | 5.28 | 1.5 |
+| 24,000 | 7,033.71 | 7.03 | 2 |
+| 36,000 | 10,550.56 | 10.55 | 3 |
+| 48,000 | 14,067.41 | 14.07 | 4 |
+| 60,000 | 17,584.26 | 17.58 | 5 |
+
+And the other way:
+
+| Watts | BTU/h |
+| --- | --- |
+| 100 | 341.21 |
+| 500 | 1,706.07 |
+| 1,000 | 3,412.14 |
+| 1,500 | 5,118.21 |
+| 2,000 | 6,824.28 |
+
+## Cooling watts are not electrical watts
+
+The watts this converter gives for an air conditioner are **heat watts**: how much heat the unit moves. A heat pump or AC moves more heat than the electricity it uses, so its electrical draw is much lower. To estimate the power it pulls from the wall, divide the BTU/h rating by its EER (BTU/h of cooling per watt of electricity), which ENERGY STAR lists for certified models. A 12,000 BTU/h unit with an EER of 12 draws about 1,000 W.
+
+Electric resistance heaters are different: almost every watt becomes heat, so a 1,500 W heater really does put out about 5,118 BTU/h. Once you know the electrical watts, the <CalcLink slug="watts-to-kwh-calculator">watts to kWh calculator</CalcLink> turns them into energy use and cost.
+
+## Common mistakes
+
+- **Converting an AC rating to kWh.** The label is BTU per hour, so the answer is in watts or kW. kWh only appears once you multiply by hours of running.
+- **Treating cooling watts as power draw.** A 3.5 kW cooling unit does not need a 3.5 kW generator or circuit; check the electrical input on the nameplate.
+- **Using 3.4 or 0.3 as the factor.** Fine for a quick guess, but 0.3 overstates watts by about 2%. Use 0.29307107 when the numbers matter.
+- **Confusing tons of cooling with weight.** One ton of AC is a rate of 12,000 BTU/h, not a mass.

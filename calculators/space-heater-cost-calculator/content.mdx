@@ -1,0 +1,81 @@
+export const howTo = [
+  'Pick your heater’s power: 1,500 W (high), 750 W (low), or type the wattage from its label.',
+  'Enter how many hours a day and how many days a month you run it.',
+  'If the heater has a thermostat, lower the share of time it is actually heating (100% is the worst case).',
+  'Enter your electricity price per kWh and currency, then read the cost per hour, per day and per month.',
+]
+
+export const faq = [
+  {
+    q: 'How much does it cost to run a space heater per hour?',
+    a: 'A 1,500 W heater on full power uses 1.5 kWh every hour. At $0.18 per kWh, close to the August 2026 US average, that is about 27 cents an hour, or about 13.5 cents on a 750 W low setting.',
+  },
+  {
+    q: 'Does a portable heater use a lot of electricity?',
+    a: 'Yes, compared with most things you plug in. A 1,500 W heater run 8 hours a day for 30 days uses 360 kWh, which is about 40% of the roughly 875 kWh an average US household uses in a month (EIA).',
+  },
+  {
+    q: 'How much does it cost to run a space heater all night?',
+    a: 'Eight hours at 1,500 W is 12 kWh, about $2.16 at $0.18 per kWh. The US Consumer Product Safety Commission advises never leaving a portable heater on while you sleep, so warm the room before bed and switch it off.',
+  },
+  {
+    q: 'Is a space heater cheaper than central heating?',
+    a: 'Only when you use it to heat one room and turn the central thermostat down. Per unit of heat, a plug-in heater costs more than a heat pump, which ENERGY STAR says can deliver up to three times more heat than the electricity it uses.',
+  },
+  {
+    q: 'Do ceramic or oil-filled heaters use less electricity?',
+    a: 'Not per hour at the same wattage. Every plug-in resistance heater turns the electricity it draws into heat, so two 1,500 W heaters cost the same per hour on full power. A good thermostat that switches the heater off once the room is warm is what lowers the bill.',
+  },
+]
+
+This calculator answers the question most people ask before plugging in a heater for winter: how much will it add to the electricity bill? Choose the common 1,500 W or 750 W settings, or enter your own heater’s wattage, add how long you run it and your price per kWh, and you get the cost per hour, per day and per month. An extra input lets you account for the thermostat switching the heater off once the room is warm, which is the main reason real bills come in lower than the label suggests.
+
+## The space heater cost formula
+
+Electricity is billed in kilowatt-hours (kWh). One kWh is 1,000 watts running for one hour, so a heater’s wattage tells you directly how fast it uses energy.
+
+<Formula>
+Average power (W) = Heater wattage × Share of time heating
+Cost per hour = Average power ÷ 1,000 × Price per kWh
+Cost per day = Cost per hour × Hours used per day
+Cost per month = Cost per day × Days used per month
+</Formula>
+
+- **Heater wattage** is on the label, usually on the back or base. Most household plug-in heaters top out at 1,500 W: when CPSC staff tested 27 household portable electric heaters in 2023, 23 of them had a maximum of 1,500 W.
+- **Share of time heating** is 100% if the heater never switches off. With a thermostat, it cycles on and off to hold the temperature, so the true figure depends on how cold the room is and how well it holds heat.
+- **Price per kWh** is the unit rate on your bill as a decimal, for example 0.18 for 18 cents or 0.27 for 27p.
+
+## Worked example
+
+You run a 1,500 W heater on high for 8 hours a day through a 30-day month, and you pay $0.18 per kWh.
+
+<WorkedExample slug="space-heater-cost-calculator" inputs={{ setting: 'high', hours: 8, days: 30, duty: 100, rate: 0.18, currency: 'USD' }} />
+
+On full power the heater uses 1.5 kWh an hour, which costs **$0.27 an hour**, $2.16 for the 8 hours and **$64.80 for the month**, from 360 kWh of electricity. If its thermostat keeps the heating element on only half the time once the room is warm, the average draw falls to 750 W and the month costs $32.40 instead. The same is true of switching to a 750 W low setting.
+
+## What the result means
+
+To put the numbers in context, the EIA puts the average US household’s electricity use at about 10,500 kWh a year, roughly 875 kWh a month. A single heater running long hours can add a large share of that on its own:
+
+| Use pattern (1,500 W, full power) | kWh per month | Cost at $0.18/kWh |
+| --- | --- | --- |
+| 2 hours a day, 30 days | 90 | $16.20 |
+| 4 hours a day, 30 days | 180 | $32.40 |
+| 8 hours a day, 30 days | 360 | $64.80 |
+| 12 hours a day, 30 days | 540 | $97.20 |
+
+A space heater saves money only when it lets you heat one room instead of the whole house. If the central heating carries on as normal, the heater is pure extra cost. For the whole-house picture, compare running costs with the <CalcLink slug="heat-pump-vs-gas-furnace-calculator">heat pump vs gas furnace calculator</CalcLink>. ENERGY STAR notes that a heat pump can deliver up to three times more heat than the electricity it uses, while a plug-in resistance heater gives you one unit of heat per unit of electricity.
+
+## Common mistakes
+
+- **Treating the label as the real use.** The label is the maximum. A heater with a working thermostat in a well-sealed room might heat only part of each hour. A plug-in energy monitor shows the real kWh after a few days.
+- **Mixing up watts and kilowatts.** A heater rated 1.5 kW is 1,500 W. Typing 1.5 into the watts box makes the answer a thousand times too small.
+- **Using the whole bill divided by kWh.** Fixed daily or monthly charges are not part of the price per kWh. Use the unit rate printed on the bill.
+- **Assuming a “high efficiency” heater uses less per hour.** Two 1,500 W heaters on full power cost the same. Controls and thermostats make the difference, not the heating element type.
+- **Running it while you sleep.** It adds hours and cost, and CPSC advises against it on safety grounds.
+
+## Safety comes first
+
+Space heaters account for about a third of US home heating equipment fires but nearly nine out of ten of the deaths, according to NFPA figures for 2016–2020. The Consumer Product Safety Commission’s advice is simple: keep every side of the heater at least 3 feet from beds, curtains, sofas and anything else that can burn, plug it straight into a wall outlet rather than a power strip, set it on a stable, level surface, and never leave it running while you sleep.
+
+To cost any other appliance, use the <CalcLink slug="electricity-cost-calculator">electricity cost calculator</CalcLink>. To convert a heater’s wattage into BTU per hour and compare it with a furnace or air conditioner rating, try the <CalcLink slug="btu-to-watts-converter">BTU to watts converter</CalcLink>.

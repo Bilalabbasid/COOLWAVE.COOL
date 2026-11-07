@@ -4,7 +4,7 @@ import { postsInCategory } from '@/lib/registry';
 
 export function BlogCategoryNav({ active }: { active: string | null }) {
   const cats = CATEGORIES.filter((c) => postsInCategory(c.slug).length > 0);
-  const base = 'rounded-full border px-3 py-1.5 text-sm font-semibold';
+  const base = 'inline-flex h-11 items-center rounded-full border px-4 text-sm font-semibold';
   return (
     <nav aria-label="Filter guides by category" className="mt-6">
       <ul className="flex flex-wrap gap-2">

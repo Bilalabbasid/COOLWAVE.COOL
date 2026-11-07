@@ -14,10 +14,15 @@
   --brand-strong: #075074;
   --accent: #0b7d77;
   --accent-soft: #d8f3f0;
-  --focus: #f59e0b;
+  /* Form-control outlines: ≥3:1 against --bg (3.56) and --surface (3.73), WCAG 1.4.11. */
+  --field-border: #71879a;
+  /* Focus ring: ≥3:1 against every surface (white 5.02, bg 4.79, surface-2 4.58). */
+  --focus: #b45309;
   --good: #137a3e;
   --caution: #8a5a00;
   --danger: #b42318;
+  --shadow-sm: 0 1px 2px rgb(15 31 46 / 0.05), 0 1px 3px rgb(15 31 46 / 0.06);
+  --shadow-md: 0 4px 14px rgb(15 31 46 / 0.08), 0 1px 3px rgb(15 31 46 / 0.06);
   color-scheme: light;
 }
 
@@ -32,10 +37,14 @@
   --brand-strong: #8fd8f5;
   --accent: #3fd0c4;
   --accent-soft: #10373a;
+  /* ≥3:1 against --bg (3.86) and --surface (3.51). */
+  --field-border: #58778d;
   --focus: #fbbf24;
   --good: #5fd28d;
   --caution: #f4c35a;
   --danger: #ff8a7a;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.3);
+  --shadow-md: 0 6px 18px rgb(0 0 0 / 0.35), 0 1px 3px rgb(0 0 0 / 0.3);
   color-scheme: dark;
 }
 
@@ -50,6 +59,8 @@
   --color-brand-strong: var(--brand-strong);
   --color-accent: var(--accent);
   --color-accent-soft: var(--accent-soft);
+  --color-field-border: var(--field-border);
+  --color-focus: var(--focus);
   --color-good: var(--good);
   --color-caution: var(--caution);
   --color-danger: var(--danger);
@@ -66,10 +77,72 @@ body {
   font-family: var(--font-sans);
 }
 
+h1, h2, h3 { text-wrap: balance; }
+
 :focus-visible {
   outline: 3px solid var(--focus);
   outline-offset: 2px;
-  border-radius: 4px;
+}
+/* A text field already sits in a bordered wrapper: ring the wrapper instead (see .cw-field). */
+.cw-field input:focus-visible { outline: none; }
+.cw-field:focus-within { border-color: var(--brand); outline: 3px solid var(--focus); outline-offset: 1px; }
+
+@layer components {
+  /* Shared card surface: links to calculators and guides. */
+  .cw-card {
+    display: block;
+    height: 100%;
+    border: 1px solid var(--border);
+    border-radius: 0.875rem;
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
+    transition: border-color 150ms ease, box-shadow 150ms ease, transform 150ms ease;
+  }
+  .cw-card:hover { border-color: var(--brand); box-shadow: var(--shadow-md); }
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .cw-card:hover { transform: translateY(-1px); }
+  }
+  .cw-card .cw-arrow { transition: transform 150ms ease; }
+  .cw-card:hover .cw-arrow { transform: translateX(3px); }
+}
+
+/*
+ * Header category strip. On phones it scrolls sideways; the trailing edge fades out so it
+ * reads as "more this way". Where scroll-driven animations exist, the fades track the scroll
+ * position (leading fade appears once scrolled, trailing fade disappears at the end) and do
+ * nothing when the list fits. Links inside get an inset focus ring so it is not clipped.
+ */
+.cw-strip {
+  scrollbar-width: none;
+  scroll-padding-inline: 1rem;
+  overscroll-behavior-x: contain;
+}
+.cw-strip::-webkit-scrollbar { display: none; }
+.cw-strip a:focus-visible { outline-offset: -3px; }
+@supports (animation-timeline: scroll()) {
+  .cw-strip {
+    animation: cw-strip-fade linear both;
+    animation-timeline: scroll(self inline);
+  }
+  @keyframes cw-strip-fade {
+    from { mask-image: linear-gradient(to right, #000 calc(100% - 2.5rem), transparent); }
+    8%, 92% { mask-image: linear-gradient(to right, transparent, #000 2.5rem, #000 calc(100% - 2.5rem), transparent); }
+    to { mask-image: linear-gradient(to right, transparent, #000 2.5rem); }
+  }
+}
+@supports not (animation-timeline: scroll()) {
+  @media (max-width: 47.99rem) {
+    .cw-strip { mask-image: linear-gradient(to right, #000 calc(100% - 2.5rem), transparent); }
+  }
+}
+
+/* Home hero: a soft tinted band with a tiny two-line wave drawn in SVG (no images). */
+.cw-hero {
+  background: linear-gradient(180deg, var(--surface-2), var(--bg));
+}
+@media (prefers-reduced-motion: no-preference) {
+  .cw-hero-wave { animation: cw-drift 14s ease-in-out infinite alternate; }
+  @keyframes cw-drift { to { transform: translateX(-3%); } }
 }
 
 /* Long-form content (calculator explainers and blog posts) */

@@ -12,9 +12,14 @@ export function RelatedCalculators({ slugs, heading = 'Related calculators' }: {
       <ul className="mt-4 grid gap-3 sm:grid-cols-2">
         {items.map((c) => (
           <li key={c.slug}>
-            <Link href={`/calculators/${c.slug}`} className="block h-full rounded-xl border border-border bg-surface p-4 transition hover:border-brand">
-              <span className="font-semibold text-brand">{c.title}</span>
-              <span className="mt-1 block text-sm text-muted">{c.shortDescription}</span>
+            <Link href={`/calculators/${c.slug}`} className="cw-card group p-4">
+              <span className="flex items-start justify-between gap-3">
+                <span className="font-semibold text-brand">{c.title}</span>
+                <span aria-hidden="true" className="cw-arrow mt-px shrink-0 text-brand">
+                  →
+                </span>
+              </span>
+              <span className="mt-1 block text-sm leading-snug text-muted">{c.shortDescription}</span>
             </Link>
           </li>
         ))}

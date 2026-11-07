@@ -21,7 +21,7 @@ export function ThemeToggle() {
           localStorage.setItem('cw-theme', next);
         } catch {}
       }}
-      className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-surface text-text hover:border-brand"
+      className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-border bg-surface text-lg text-text hover:border-brand"
       aria-label={`Switch to ${next} mode`}
     >
       <span aria-hidden="true">{theme === 'dark' ? '☀' : '☾'}</span>

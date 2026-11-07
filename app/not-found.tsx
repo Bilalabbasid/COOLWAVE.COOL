@@ -10,7 +10,7 @@ export default function NotFound() {
       <ul className="mt-6 flex flex-wrap justify-center gap-2">
         {CATEGORIES.map((c) => (
           <li key={c.slug}>
-            <Link href={`/category/${c.slug}`} className="inline-block rounded-full border border-border bg-surface px-3 py-1.5 text-sm font-semibold hover:border-brand">
+            <Link href={`/category/${c.slug}`} className="inline-flex h-11 items-center rounded-full border border-border bg-surface px-4 text-sm font-semibold hover:border-brand">
               {c.name}
             </Link>
           </li>

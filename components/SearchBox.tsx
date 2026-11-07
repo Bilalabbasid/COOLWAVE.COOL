@@ -40,7 +40,7 @@ export function SearchBox({ items }: { items: SearchItem[] }) {
         onChange={(e) => setQ(e.target.value)}
         placeholder="Search: BTU, dew point, space heater cost…"
         autoComplete="off"
-        className="h-12 w-full rounded-xl border border-border bg-surface px-4 text-base shadow-sm outline-none focus:border-brand"
+        className="h-12 w-full rounded-xl border border-field-border bg-surface px-4 text-base shadow-[var(--shadow-sm)] focus:border-brand"
       />
       {q.trim() && (
         <ul className="absolute inset-x-0 top-full z-20 mt-1 max-h-96 overflow-auto rounded-xl border border-border bg-surface p-1 shadow-lg">
@@ -49,7 +49,7 @@ export function SearchBox({ items }: { items: SearchItem[] }) {
           ) : (
             results.map((r) => (
               <li key={r.href}>
-                <Link href={r.href} className="flex items-center justify-between gap-3 rounded-lg px-3 py-2 hover:bg-surface-2">
+                <Link href={r.href} className="flex min-h-11 items-center justify-between gap-3 rounded-lg px-3 py-2 hover:bg-surface-2">
                   <span className="font-medium">{r.title}</span>
                   <span className="text-xs text-muted">{r.kind}</span>
                 </Link>

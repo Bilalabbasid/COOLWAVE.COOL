@@ -1,0 +1,115 @@
+---
+title: "What Is Dew Point? Meaning and Comfort Chart"
+description: "Dew point is the temperature air must cool to before it is saturated. Learn how it differs from humidity, which dew points feel muggy, and how to work it out."
+date: 2026-11-08
+updated: 2026-11-08
+category: weather-heat
+calculator: dew-point-calculator
+keyword: what is dew point
+image: /images/blog/what-is-dew-point.webp
+imageAlt: "Dew droplets on blades of grass at sunrise in soft blue morning light"
+faq:
+  - q: "What is a comfortable dew point?"
+    a: "Most people find summer dew points in the 50s °F comfortable. The National Weather Service describes 55 °F or lower as dry and comfortable, 55 to 65 °F as becoming sticky, and 65 °F or higher as oppressive."
+  - q: "Is dew point or relative humidity better for judging how humid it feels?"
+    a: "Dew point. Relative humidity changes with temperature, while the dew point tracks the actual amount of water vapor in the air. The NWS notes that 80 °F with a 60 °F dew point feels far more humid than 30 °F with a 30 °F dew point, even though the second has 100% relative humidity."
+  - q: "Can the dew point be higher than the air temperature?"
+    a: "No, not in a steady state. When the air cools to its dew point it is saturated, and any extra cooling makes water condense as dew, fog or cloud. The dew point can equal the air temperature, which means 100% relative humidity."
+  - q: "What dew point is dangerous?"
+    a: "The dew point alone is not a danger scale. Heat risk depends on temperature and humidity together, which is what the heat index measures. High dew points in the 70s °F on a hot day push the heat index into the NWS caution and danger ranges."
+  - q: "Why do windows fog up inside?"
+    a: "Glass that is colder than the indoor air's dew point cools the air touching it below saturation, so water condenses. At 70 °F and 50% humidity the indoor dew point is about 50 °F, so any surface colder than that can collect moisture."
+---
+
+The dew point is the temperature the air would have to cool to, with no change in pressure or moisture, before it becomes saturated at 100% relative humidity. Cool it any further and water vapor condenses into dew, fog or cloud. The higher the dew point, the more moisture is in the air, which is why forecasters use it as the best single number for how muggy it will feel: dew points in the 50s °F feel comfortable to most people, and the 70s feel oppressive.
+
+To convert your own temperature and humidity reading, <CalcLink slug="dew-point-calculator">use our dew point calculator to find the dew point in °F or °C</CalcLink>. Below you will find what the number means, a comfort chart, and how to calculate it by hand.
+
+## Dew point vs. relative humidity
+
+Relative humidity (RH) and dew point both describe moisture, but they answer different questions.
+
+- **Relative humidity** is a percentage: how much water vapor the air holds compared with the most it could hold at its current temperature. Because warm air can hold more vapor than cold air, the same moisture gives a lower RH on a hot afternoon and a higher RH at night.
+- **Dew point** is a temperature that depends only on the amount of water vapor. It barely changes from afternoon to night unless a new air mass moves in.
+
+The NWS office in La Crosse, Wisconsin uses a clear example. At 30 °F with a 30 °F dew point, relative humidity is 100%. At 80 °F with a 60 °F dew point, it is only about 50%. Yet the 80-degree day feels far more humid, because there is much more water in the air. For judging how sticky it will feel outside, the dew point is the more honest number.
+
+Here is the same idea in a table. The dew point stays at 60 °F, and only the air temperature changes:
+
+| Air temperature | Dew point | Relative humidity |
+|---|---|---|
+| 60 °F | 60 °F | 100% |
+| 70 °F | 60 °F | 71% |
+| 80 °F | 60 °F | 51% |
+| 90 °F | 60 °F | 37% |
+| 100 °F | 60 °F | 27% |
+
+Values computed with the NWS vapor pressure formula shown below. The moisture in the air is identical in every row; only the percentage moves.
+
+## Dew point comfort chart
+
+The NWS does not publish a single national comfort scale, but its local offices describe very similar ranges. La Crosse calls 55 °F or less "dry and comfortable", 55 to 65 °F "becoming sticky with muggy evenings", and 65 °F or more "becoming oppressive". The Louisville office says dew points in the 50s are comfortable to most people, the 60s somewhat uncomfortable, and the 70s quite uncomfortable. Combining those two descriptions:
+
+| Dew point (°F) | Dew point (°C) | How it typically feels in summer |
+|---|---|---|
+| Below 50 | Below 10 | Dry, crisp; skin and lips may feel dry |
+| 50–55 | 10–13 | Comfortable for most people |
+| 55–60 | 13–16 | Pleasant to slightly humid |
+| 60–65 | 16–18 | Sticky, muggy evenings |
+| 65–70 | 18–21 | Humid and uncomfortable for many people |
+| 70 and above | 21 and above | Oppressive; sweat evaporates poorly |
+
+Comfort is personal. People who live with humid summers often tolerate higher dew points than visitors from dry climates.
+
+<BlogImage src="/images/blog/what-is-dew-point-inline.webp" alt="Condensation droplets on the outside of a cold glass on a windowsill in daylight" caption="A cold glass sweats because its surface is below the dew point of the surrounding air." />
+
+## How to calculate the dew point
+
+The NWS weather calculator uses a Magnus-type formula for vapor pressure. With temperatures in °C:
+
+<Formula>es = 6.11 × 10^(7.5 T / (237.3 + T))</Formula>
+
+Here es is the saturation vapor pressure in hectopascals (hPa) at air temperature T. The actual vapor pressure e is es multiplied by RH/100. To find the dew point, run the formula backwards:
+
+<Formula>Td = 237.3 x / (7.5 − x), where x = log10(e / 6.11)</Formula>
+
+### Worked example: 80 °F at 50% relative humidity
+
+1. Convert to Celsius: 80 °F = 26.67 °C.
+2. Saturation vapor pressure: es = 6.11 × 10^(7.5 × 26.67 / 263.97) = 6.11 × 10^0.7577 ≈ 34.97 hPa.
+3. Actual vapor pressure: e = 34.97 × 0.50 ≈ 17.49 hPa.
+4. x = log10(17.49 / 6.11) = log10(2.862) ≈ 0.4566.
+5. Td = 237.3 × 0.4566 / (7.5 − 0.4566) ≈ 108.36 / 7.043 ≈ 15.4 °C.
+6. Convert back: 15.4 °C ≈ 59.7 °F.
+
+So a summer afternoon of 80 °F and 50% humidity has a dew point of about 60 °F: right at the line where it starts to feel sticky. The same formula is behind our <CalcLink slug="relative-humidity-calculator">relative humidity calculator</CalcLink>, which works in the other direction, from temperature and dew point to RH.
+
+A quick rule of thumb you may see is "subtract one fifth of (100 − RH) from the temperature in °C". It is only reasonable when humidity is above about 50%; use the formula or the calculator for anything that matters.
+
+## Dew point indoors: condensation and mold
+
+The dew point explains why windows fog, cold-water pipes drip and basements smell damp. Any surface colder than the air's dew point cools the air touching it to saturation, and water condenses on that surface.
+
+Take a home at 70 °F and 50% relative humidity. Using the same formula, the indoor dew point is about 50.5 °F. On a cold night, the inner pane of a single-glazed window can easily drop below 50 °F, so it fogs. Lower the indoor humidity to 35% and the dew point falls to about 41 °F, and the same window stays clear.
+
+The U.S. EPA recommends keeping indoor relative humidity below 60%, ideally between 30% and 50%, and notes that condensation on windows, walls or pipes can be a sign of high humidity. If your rooms stay damp, our <CalcLink slug="dehumidifier-size-calculator">dehumidifier size calculator</CalcLink> estimates the capacity you need.
+
+## Dew point, fog and frost
+
+Forecasters watch the gap between the air temperature and the dew point, called the dew point depression. When the evening temperature is forecast to fall to the dew point, fog or dew is likely by morning. When the dew point is below 32 °F, moisture deposits as frost instead.
+
+## Dew point and heat safety
+
+This is general information, not medical advice. A high dew point on its own is not dangerous, but combined with high temperatures it makes it harder for sweat to evaporate, which is what the heat index measures. If you want to know how risky a humid day is, read <PostLink slug="what-is-heat-index">what the heat index means and its danger levels</PostLink> or check the <CalcLink slug="heat-index-calculator">heat index calculator</CalcLink>, and follow your local NWS heat alerts.
+
+## The bottom line
+
+The dew point tells you how much moisture is really in the air. Below 55 °F feels comfortable, 55 to 65 °F gets sticky, and 65 °F and up feels oppressive, according to NWS guidance. Unlike relative humidity, it does not swing with the time of day, which makes it the better number for planning. To find yours from a thermometer and hygrometer reading, <CalcLink slug="dew-point-calculator">try the dew point calculator</CalcLink>.
+
+## Sources
+
+1. [Dew point vs humidity](https://www.weather.gov/arx/why_dewpoint_vs_humidity) — National Weather Service, La Crosse WI
+2. [Humidity](https://www.weather.gov/lmk/humidity) — National Weather Service, Louisville KY
+3. [Glossary: Dew Point](https://forecast.weather.gov/glossary.php?word=dew%20point) — National Weather Service
+4. [Vapor Pressure (weather calculator formulas)](https://www.weather.gov/media/epz/wxcalc/vaporPressure.pdf) — National Weather Service, El Paso TX
+5. [A Brief Guide to Mold, Moisture and Your Home](https://www.epa.gov/mold/brief-guide-mold-moisture-and-your-home) — U.S. Environmental Protection Agency

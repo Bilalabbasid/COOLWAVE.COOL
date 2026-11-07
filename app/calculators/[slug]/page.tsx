@@ -49,15 +49,15 @@ export default async function CalculatorPage({ params }: PageProps<'/calculators
   const relatedPosts = [...new Set([...config.relatedPosts, ...postsForCalculator(config.slug).map((p) => p.slug)])];
 
   return (
-    <article className="mx-auto max-w-3xl px-4 pt-4 pb-8">
+    <article className="mx-auto max-w-3xl px-4 pt-3 pb-8 sm:pt-5">
       <Breadcrumb
         crumbs={[
           { name: category.name, path: `/category/${category.slug}` },
           { name: config.title, path: `/calculators/${config.slug}` },
         ]}
       />
-      <h1 className="mt-2 text-2xl leading-tight font-extrabold tracking-tight sm:text-3xl">{config.h1}</h1>
-      <p className="mt-1 mb-4 text-muted">{config.shortDescription}</p>
+      <h1 className="mt-1.5 text-[1.375rem] leading-[1.2] font-extrabold tracking-tight sm:mt-2 sm:text-3xl">{config.h1}</h1>
+      <p className="mt-1 mb-3 text-[0.95rem] leading-snug text-muted sm:mb-4 sm:text-base">{config.shortDescription}</p>
 
       {config.widget ? (
         <WidgetHost kind={config.widget} shell={toShell(config)} />
@@ -66,7 +66,7 @@ export default async function CalculatorPage({ params }: PageProps<'/calculators
       )}
 
       {config.disclaimer && (
-        <p role="note" className="mt-4 rounded-lg border-l-4 border-caution bg-surface px-4 py-3 text-sm">
+        <p role="note" className="mt-4 rounded-lg border border-l-4 border-border border-l-caution bg-surface px-4 py-3 text-sm">
           <strong>Important:</strong> {config.disclaimer}
         </p>
       )}

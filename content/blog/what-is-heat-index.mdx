@@ -1,0 +1,123 @@
+---
+title: "What Is the Heat Index? Meaning, Chart and Danger Levels"
+description: "The heat index is how hot it feels when humidity is added to air temperature. See the NWS formula, a chart, danger levels and a worked example."
+date: 2026-11-08
+updated: 2026-11-08
+category: weather-heat
+calculator: heat-index-calculator
+keyword: what is heat index
+image: /images/blog/what-is-heat-index.webp
+imageAlt: "Thermometer in bright summer shade beside a glass of iced water, cool blue and teal tones"
+faq:
+  - q: "What heat index is dangerous?"
+    a: "The National Weather Service puts a heat index of 103 to 124 °F in its Danger category, where heat cramps or heat exhaustion are likely and heat stroke is possible with prolonged exposure or activity. At 125 °F and above, heat stroke is highly likely."
+  - q: "Is the heat index the same as the feels-like temperature?"
+    a: "In hot weather, yes. Weather apps usually show the heat index as the feels-like temperature in summer and the wind chill in winter. The NWS also calls the heat index the apparent temperature."
+  - q: "Does the heat index include direct sunlight?"
+    a: "No. Heat index values are computed for shade and light wind. The NWS says full sunshine can raise the heat index by up to 15 °F."
+  - q: "Can the heat index be lower than the actual temperature?"
+    a: "Yes, in very dry air. The NWS Amarillo office gives the example of 100 °F at 15% humidity, which has a heat index of about 96 °F, because sweat evaporates easily."
+  - q: "Why does humidity make it feel hotter?"
+    a: "Your body cools itself by evaporating sweat. When the air is already humid, sweat evaporates more slowly, so less heat leaves your skin and you feel hotter than the thermometer reading."
+---
+
+The heat index is how hot it actually feels to your body when humidity is combined with the air temperature. The National Weather Service (NWS) defines it as a measure of "how hot it really feels" once relative humidity is factored in, so 96 °F with 65% humidity feels like 121 °F. It is the number behind summer heat advisories, and it is calculated for shade, not sun.
+
+If you already know your temperature and humidity, <CalcLink slug="heat-index-calculator">use our heat index calculator to get the exact feels-like temperature and NWS risk level</CalcLink>. The rest of this guide explains where the number comes from, how to read a heat index chart, and what each danger level means.
+
+## Why humidity makes hot air feel hotter
+
+Your body sheds heat mainly by sweating. Sweat only cools you when it evaporates, and evaporation slows down when the air already holds a lot of water vapor. The NWS Amarillo office puts it simply: when relative humidity is high, the rate of evaporation from the body drops, so the body feels warmer than the air temperature suggests. In dry air the opposite happens and you can feel cooler than the thermometer reading.
+
+That is why 90 °F in Phoenix and 90 °F in Houston are not the same day. At 90 °F and 20% humidity the heat index is about 86 °F. At 90 °F and 70% humidity it is about 106 °F, a 20-degree difference from the same thermometer reading.
+
+## How the heat index is calculated
+
+The heat index comes from work by Robert Steadman, who modeled how a clothed adult exchanges heat with the air. In 1990 Lans Rothfusz of the NWS fitted a regression equation to Steadman's tables, and that equation, with two small adjustments, is what the NWS Weather Prediction Center publishes today:
+
+<Formula>HI = -42.379 + 2.04901523 T + 10.14333127 RH - 0.22475541 T RH - 0.00683783 T² - 0.05481717 RH² + 0.00122874 T² RH + 0.00085282 T RH² - 0.00000199 T² RH²</Formula>
+
+Here T is the air temperature in °F and RH is relative humidity in percent. A few details matter:
+
+- For milder conditions (a result below about 80 °F), the NWS uses a simpler formula instead, because the regression is not meant for that range.
+- Two corrections are applied at the edges: a downward adjustment when humidity is below 13% between 80 and 112 °F, and an upward one when humidity is above 85% between 80 and 87 °F.
+- The NWS says the regression has an error of about ±1.3 °F, so treat the result as a close estimate, not a laboratory reading.
+
+The heat index is only defined for shade and a light breeze. The NWS warns that full sunshine can add up to 15 °F, and strong winds with very hot, dry air can also be hazardous.
+
+## Worked example: a humid 96 °F afternoon
+
+The NWS uses this exact case on its heat safety page. Plugging T = 96 and RH = 65 into the equation above gives a heat index of 121 °F. Here is the same calculation run through our tool:
+
+<WorkedExample slug="heat-index-calculator" inputs={{ temp: 96, rh: 65 }} />
+
+The air is 96 °F, but your body is dealing with conditions equivalent to 121 °F, 25 degrees hotter. That lands in the NWS Danger band. If you were working outside in direct sun, the felt heat could be higher still.
+
+A second NWS example shows how dry air works the other way: at 100 °F and 15% humidity the formula (with the low-humidity correction) gives about 96 °F, slightly below the air temperature.
+
+## Heat index chart
+
+The table below was computed from the NWS equation, including its adjustments, rounded to the nearest degree. Cells above about 137 °F are beyond the range of the official NWS chart, where the formula is no longer considered valid; treat them as extreme danger.
+
+| Air temp (°F) | 40% RH | 50% RH | 60% RH | 70% RH | 80% RH | 90% RH |
+|---|---|---|---|---|---|---|
+| 80 | 80 | 81 | 82 | 83 | 84 | 86 |
+| 84 | 83 | 85 | 88 | 90 | 94 | 98 |
+| 88 | 88 | 91 | 95 | 100 | 106 | 113 |
+| 92 | 94 | 99 | 105 | 112 | 121 | 131 |
+| 96 | 101 | 108 | 116 | 126 | beyond chart | beyond chart |
+| 100 | 109 | 118 | 129 | beyond chart | beyond chart | beyond chart |
+| 104 | 119 | 131 | beyond chart | beyond chart | beyond chart | beyond chart |
+
+Two patterns stand out. At 80 °F humidity barely matters. By 92 °F, moving from 50% to 80% humidity adds more than 20 degrees to how it feels. Humid heat escalates fast.
+
+<BlogImage src="/images/blog/what-is-heat-index-inline.webp" alt="Shaded porch on a hazy summer afternoon with a ceiling fan and a hygrometer on the wall" caption="Heat index values assume shade. In direct sun the felt temperature can be up to 15 °F higher." />
+
+For Celsius readers: 32 °C is about 90 °F, 35 °C is 95 °F and 38 °C is about 100 °F. The calculator accepts °C directly and converts for you.
+
+## What the heat index danger levels mean
+
+The NWS groups heat index values into four classifications. These describe the risk with prolonged exposure or physical activity, not a guarantee of illness.
+
+| Heat index | NWS classification | Possible effect on the body |
+|---|---|---|
+| 80–90 °F | Caution | Fatigue possible with prolonged exposure and/or physical activity |
+| 90–103 °F | Extreme caution | Heat stroke, heat cramps or heat exhaustion possible |
+| 103–124 °F | Danger | Heat cramps or heat exhaustion likely; heat stroke possible |
+| 125 °F and above | Extreme danger | Heat stroke highly likely |
+
+Local NWS offices issue heat advisories and warnings based on forecast heat index values, but the exact thresholds differ by region because people in hot climates are more used to heat. Always follow the alerts for your area.
+
+## Heat index vs. other heat measures
+
+The heat index is not the only number you will see in summer forecasts:
+
+- **Dew point** tells you how much moisture is in the air, regardless of temperature. Many forecasters prefer it for judging mugginess. Our dew point calculator{/* TODO-LINK:dew-point-calculator */} converts temperature and humidity into dew point.
+- **Wet bulb globe temperature (WBGT)** is used for athletes and outdoor workers. The NWS describes it as an estimate of heat stress in direct sunlight that combines temperature, humidity, wind speed and solar radiation, while the heat index describes how the temperature feels in shade.
+- **Wet-bulb temperature** is the lowest temperature evaporation can cool something to. You can estimate it with our wet bulb calculator{/* TODO-LINK:wet-bulb-calculator */}.
+
+## Staying safe when the heat index is high
+
+This section is general information, not medical advice. Heat illness can happen below the thresholds above, especially for young children, older adults, people with chronic conditions and anyone working or exercising outdoors.
+
+The CDC's National Institute for Occupational Safety and Health (NIOSH) lists headache, nausea, dizziness, weakness, strong thirst, heavy sweating and reduced urination as symptoms of heat exhaustion. It lists confusion, slurred speech, seizures, very high body temperature and loss of consciousness as signs of heat stroke, which can be fatal without prompt treatment. For suspected heat stroke, NIOSH says to call 911, move the person to a cool, shaded area and cool them quickly.
+
+Practical steps when the heat index climbs:
+
+1. Check the heat index, not just the temperature, before outdoor work or exercise.
+2. Schedule strenuous activity for early morning or evening.
+3. Spend time in air conditioning when possible. If you are sizing a unit for a hot room, our <CalcLink slug="btu-calculator">BTU calculator</CalcLink> can help.
+4. Drink water regularly and take breaks in the shade.
+5. Check on neighbors and relatives who live alone or lack cooling.
+
+## The bottom line
+
+The heat index answers a simple question: how hot does it feel to a person in the shade? It combines temperature and humidity with an NWS regression that is accurate to about ±1.3 °F, and values of 103 °F or more fall in the NWS Danger range. To check today's conditions, <CalcLink slug="heat-index-calculator">enter your temperature and humidity in the heat index calculator</CalcLink> and see your risk level instantly.
+
+## Sources
+
+1. [Heat Forecast Tools: Heat Index](https://www.weather.gov/safety/heat-index) — National Weather Service
+2. [The Heat Index Equation](https://www.wpc.ncep.noaa.gov/html/heatindex_equation.shtml) — NOAA / NWS Weather Prediction Center
+3. [What is the heat index?](https://www.weather.gov/ama/heatindex) — National Weather Service, Amarillo TX
+4. [Wet Bulb Globe Temperature: How and when to use it](https://www.weather.gov/news/211009-WBGT) — National Weather Service
+5. [Heat-related Illnesses](https://www.cdc.gov/niosh/heat-stress/about/illnesses.html) — CDC / NIOSH

@@ -2,13 +2,19 @@
 import type { CalculatorEntry } from '@/lib/registry-types';
 import c0 from './btu-calculator/config';
 import * as m0 from './btu-calculator/content.mdx';
-import c1 from './electricity-cost-calculator/config';
-import * as m1 from './electricity-cost-calculator/content.mdx';
-import c2 from './heat-index-calculator/config';
-import * as m2 from './heat-index-calculator/content.mdx';
+import c1 from './btu-to-watts-converter/config';
+import * as m1 from './btu-to-watts-converter/content.mdx';
+import c2 from './electricity-cost-calculator/config';
+import * as m2 from './electricity-cost-calculator/content.mdx';
+import c3 from './heat-index-calculator/config';
+import * as m3 from './heat-index-calculator/content.mdx';
+import c4 from './space-heater-cost-calculator/config';
+import * as m4 from './space-heater-cost-calculator/content.mdx';
 
 export const CALCULATOR_ENTRIES: CalculatorEntry[] = [
   { config: c0, content: m0 as unknown as CalculatorEntry['content'] },
   { config: c1, content: m1 as unknown as CalculatorEntry['content'] },
   { config: c2, content: m2 as unknown as CalculatorEntry['content'] },
+  { config: c3, content: m3 as unknown as CalculatorEntry['content'] },
+  { config: c4, content: m4 as unknown as CalculatorEntry['content'] },
 ];

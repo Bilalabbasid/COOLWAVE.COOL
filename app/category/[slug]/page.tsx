@@ -27,15 +27,15 @@ export default async function CategoryPage({ params }: PageProps<'/category/[slu
   const calcs = calculatorsInCategory(cat.slug);
   const guides = postsInCategory(cat.slug);
   return (
-    <div className="mx-auto max-w-6xl px-4 py-6">
+    <div className="mx-auto max-w-6xl px-4 pt-3 pb-6 sm:pt-5">
       <Breadcrumb crumbs={[{ name: cat.name, path: `/category/${cat.slug}` }]} />
-      <h1 className="mt-3 text-3xl font-extrabold tracking-tight">{cat.name} calculators</h1>
-      <p className="mt-3 max-w-3xl text-lg text-muted">{cat.intro}</p>
+      <h1 className="mt-2 text-[1.75rem] leading-tight font-extrabold tracking-tight sm:mt-3 sm:text-3xl">{cat.name} calculators</h1>
+      <p className="mt-2 max-w-3xl text-base text-muted sm:mt-3 sm:text-lg">{cat.intro}</p>
       <section aria-labelledby="calcs-h" className="mt-8">
-        <h2 id="calcs-h" className="text-2xl font-bold">
+        <h2 id="calcs-h" className="text-xl font-bold sm:text-2xl">
           Calculators
         </h2>
-        <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="mt-3 grid gap-3 sm:mt-4 sm:grid-cols-2 lg:grid-cols-3">
           {calcs.map((c) => (
             <li key={c.slug}>
               <CalculatorCard c={c} />
@@ -44,11 +44,11 @@ export default async function CategoryPage({ params }: PageProps<'/category/[slu
         </ul>
       </section>
       {guides.length > 0 && (
-        <section aria-labelledby="guides-h" className="mt-10">
-          <h2 id="guides-h" className="text-2xl font-bold">
+        <section aria-labelledby="guides-h" className="mt-8 sm:mt-10">
+          <h2 id="guides-h" className="text-xl font-bold sm:text-2xl">
             Guides
           </h2>
-          <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-3 grid gap-3 sm:mt-4 sm:grid-cols-2 lg:grid-cols-3">
             {guides.map((p) => (
               <li key={p.slug}>
                 <PostCard p={p} />

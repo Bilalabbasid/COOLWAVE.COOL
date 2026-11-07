@@ -31,6 +31,32 @@ function hasUnitToggle(shell: CalculatorShell): boolean {
   );
 }
 
+type InputField = CalculatorShell['inputs'][number];
+
+/** Selects, toggles and long labels take a full row; short numeric fields pair up two per row. */
+const isWideField = (input: InputField) => input.type === 'select' || input.type === 'toggle' || input.label.length > 26;
+
+/**
+ * Presentation only: a short field that would sit alone in a row (the next visible field is wide,
+ * or it is the last one) spans the full row instead of leaving an empty half.
+ */
+function loneFields(visible: InputField[]): Set<string> {
+  const lone = new Set<string>();
+  let col = 0;
+  visible.forEach((input, i) => {
+    if (isWideField(input)) {
+      col = 0;
+    } else if (col === 1) {
+      col = 0;
+    } else {
+      const next = visible[i + 1];
+      if (!next || isWideField(next)) lone.add(input.id);
+      else col = 1;
+    }
+  });
+  return lone;
+}
+
 function toRaw(values: InputValues): Record<string, string> {
   const raw: Record<string, string> = {};
   for (const [k, v] of Object.entries(values)) if (typeof v === 'number') raw[k] = Number.isFinite(v) ? String(v) : '';
@@ -105,6 +131,7 @@ export function CalculatorWidget({ shell, initialResult }: { shell: CalculatorSh
   };
 
   const primary = shell.outputs.find((o) => o.primary) ?? shell.outputs[0];
+  const lone = loneFields(shell.inputs.filter((i) => isVisible(i, values)));
 
   const resultText = () => {
     if (!result?.ok) return '';
@@ -129,20 +156,20 @@ export function CalculatorWidget({ shell, initialResult }: { shell: CalculatorSh
   };
 
   return (
-    <section aria-label={`${shell.title} tool`} className="rounded-2xl border border-border bg-surface p-4 shadow-sm sm:p-5">
+    <section aria-label={`${shell.title} tool`} className="rounded-2xl border border-border bg-surface p-3 shadow-[var(--shadow-md)] min-[400px]:p-4 sm:p-5">
       {showToggle && (
-        <div className="mb-3 flex items-center justify-between gap-3">
+        <div className="mb-2.5 flex items-center justify-between gap-3 sm:mb-3">
           <span id={`${uid}-units`} className="text-sm font-semibold text-muted">
             Units
           </span>
-          <div role="group" aria-labelledby={`${uid}-units`} className="inline-flex rounded-lg border border-border bg-surface-2 p-0.5 text-sm">
+          <div role="group" aria-labelledby={`${uid}-units`} className="inline-flex rounded-lg border border-field-border bg-surface-2 text-sm">
             {(['imperial', 'metric'] as const).map((s) => (
               <button
                 key={s}
                 type="button"
                 aria-pressed={system === s}
                 onClick={() => switchSystem(s)}
-                className={`rounded-md px-3 py-1.5 font-semibold transition ${system === s ? 'bg-brand text-white dark:text-bg' : 'text-muted hover:text-text'}`}
+                className={`h-11 rounded-[7px] px-4 font-semibold transition-colors ${system === s ? 'bg-brand text-white dark:text-bg' : 'text-muted hover:text-text'}`}
               >
                 {s === 'imperial' ? 'Imperial' : 'Metric'}
               </button>
@@ -151,7 +178,7 @@ export function CalculatorWidget({ shell, initialResult }: { shell: CalculatorSh
         </div>
       )}
 
-      <form className="grid grid-cols-2 gap-x-3 gap-y-3" onSubmit={(e) => e.preventDefault()} noValidate>
+      <form className="grid grid-cols-2 gap-x-3 gap-y-2.5 sm:gap-x-4 sm:gap-y-3.5" onSubmit={(e) => e.preventDefault()} noValidate>
         {shell.inputs.map((input) => {
           if (!isVisible(input, values)) return null;
           const id = `${uid}-${input.id}`;
@@ -159,23 +186,23 @@ export function CalculatorWidget({ shell, initialResult }: { shell: CalculatorSh
           const helpId = input.help ? `${id}-help` : undefined;
           const errId = err ? `${id}-err` : undefined;
           const describedBy = [errId, helpId].filter(Boolean).join(' ') || undefined;
-          const wide = input.type === 'select' || input.type === 'toggle' || input.label.length > 26;
+          const wide = isWideField(input) || lone.has(input.id);
 
           if (input.type === 'toggle') {
             return (
-              <div key={input.id} className="col-span-2 flex items-start gap-2">
+              <div key={input.id} className="col-span-2 flex min-h-11 items-start gap-3 py-1">
                 <input
                   id={id}
                   type="checkbox"
                   checked={Boolean(values[input.id])}
                   onChange={(e) => update(input.id, e.target.checked)}
                   aria-describedby={describedBy}
-                  className="mt-1 h-5 w-5 accent-[var(--brand)]"
+                  className="mt-0.5 h-5 w-5 shrink-0 accent-[var(--brand)]"
                 />
-                <label htmlFor={id} className="text-sm">
+                <label htmlFor={id} className="text-sm leading-snug">
                   <span className="font-semibold">{input.label}</span>
                   {input.help && (
-                    <span id={helpId} className="block text-muted">
+                    <span id={helpId} className="mt-0.5 block text-xs text-muted">
                       {input.help}
                     </span>
                   )}
@@ -188,8 +215,8 @@ export function CalculatorWidget({ shell, initialResult }: { shell: CalculatorSh
             input.type === 'number' ? (input.unit ? unitLabel(input.unit, system) : input.unitLabel ? bySystem(input.unitLabel, system) : '') : '';
 
           return (
-            <div key={input.id} className={wide ? 'col-span-2' : 'col-span-2 min-[380px]:col-span-1'}>
-              <label htmlFor={id} className="mb-1 block text-sm font-semibold">
+            <div key={input.id} className={wide ? 'col-span-2' : 'col-span-2 min-[340px]:col-span-1'}>
+              <label htmlFor={id} className="mb-1 block text-sm leading-5 font-semibold">
                 {input.label}
               </label>
               {input.type === 'select' ? (
@@ -198,7 +225,7 @@ export function CalculatorWidget({ shell, initialResult }: { shell: CalculatorSh
                   value={String(values[input.id])}
                   onChange={(e) => update(input.id, e.target.value)}
                   aria-describedby={describedBy}
-                  className="h-11 w-full rounded-lg border border-border bg-bg px-3 text-base"
+                  className="h-11 w-full rounded-lg border border-field-border bg-bg px-3 text-base"
                 >
                   {input.options.map((o) => (
                     <option key={o.value} value={o.value}>
@@ -207,7 +234,7 @@ export function CalculatorWidget({ shell, initialResult }: { shell: CalculatorSh
                   ))}
                 </select>
               ) : (
-                <div className={`flex h-11 items-center rounded-lg border bg-bg focus-within:border-brand ${err ? 'border-danger' : 'border-border'}`}>
+                <div className={`cw-field flex h-11 items-center rounded-lg border bg-bg ${err ? 'border-danger' : 'border-field-border'}`}>
                   <input
                     id={id}
                     type="text"
@@ -228,12 +255,12 @@ export function CalculatorWidget({ shell, initialResult }: { shell: CalculatorSh
                 </div>
               )}
               {err && (
-                <p id={errId} role="alert" className="mt-1 text-sm text-danger">
+                <p id={errId} role="alert" className="mt-1 text-sm leading-snug text-danger">
                   {err}
                 </p>
               )}
               {input.help && !err && (
-                <p id={helpId} className="mt-1 text-xs text-muted">
+                <p id={helpId} className="mt-1 text-xs leading-snug text-muted">
                   {input.help}
                 </p>
               )}
@@ -242,27 +269,27 @@ export function CalculatorWidget({ shell, initialResult }: { shell: CalculatorSh
         })}
       </form>
 
-      <div aria-live="polite" className="mt-4">
+      <div aria-live="polite" className="mt-3 sm:mt-4">
         {hasErrors ? (
-          <p className="rounded-xl border border-dashed border-border p-4 text-sm text-muted">Fix the highlighted field to see your result.</p>
+          <p className="rounded-xl border border-dashed border-field-border p-4 text-sm text-muted">Fix the highlighted field to see your result.</p>
         ) : !result ? (
-          <p className="rounded-xl border border-dashed border-border p-4 text-sm text-muted">Calculating…</p>
+          <p className="rounded-xl border border-dashed border-field-border p-4 text-sm text-muted">Calculating…</p>
         ) : !result.ok ? (
-          <div className="rounded-xl border-2 border-caution bg-surface-2 p-4" role="status">
+          <div className="rounded-xl border-2 border-caution bg-surface-2 p-3 sm:p-4" role="status">
             <p className="font-semibold">No result for these inputs</p>
             <p className="mt-1 text-sm">{result.error}</p>
           </div>
         ) : (
-          <div className={`rounded-xl border-2 bg-surface-2 p-4 ${STATUS_STYLES[result.status ?? 'info']}`}>
+          <div className={`rounded-xl border-2 bg-surface-2 p-3 sm:p-4 ${STATUS_STYLES[result.status ?? 'info']}`}>
             {shell.estimate && (
-              <span className="mb-2 inline-block rounded-full bg-accent-soft px-2.5 py-0.5 text-xs font-bold uppercase tracking-wide text-text">Estimate</span>
+              <span className="mb-1.5 inline-block rounded-full bg-accent-soft px-2.5 py-0.5 text-xs font-bold tracking-wide text-text uppercase">Estimate</span>
             )}
             {primary && (() => {
               const f = formatOutput(primary, result.values[primary.id], system, values);
               return (
                 <div>
                   <p className="text-sm font-semibold text-muted">{primary.label}</p>
-                  <p className="text-3xl font-extrabold tracking-tight text-brand">
+                  <p className="text-3xl leading-tight font-extrabold tracking-tight break-words text-brand">
                     {f.value}
                     {f.unit && <span className="ml-1.5 text-lg font-bold text-text">{f.unit}</span>}
                   </p>
@@ -271,7 +298,7 @@ export function CalculatorWidget({ shell, initialResult }: { shell: CalculatorSh
             })()}
             {result.summary && <p className="mt-2 text-sm">{result.summary}</p>}
             {shell.outputs.length > 1 && (
-              <dl className="mt-3 grid gap-x-4 gap-y-2 border-t border-border pt-3 text-sm sm:grid-cols-2">
+              <dl className="mt-3 grid grid-cols-2 gap-x-4 gap-y-2 border-t border-border pt-3 text-sm">
                 {shell.outputs
                   .filter((o) => o !== primary)
                   .map((o) => {
@@ -297,11 +324,11 @@ export function CalculatorWidget({ shell, initialResult }: { shell: CalculatorSh
                 ))}
               </ul>
             )}
-            <div className="mt-4 flex flex-wrap gap-2">
-              <button type="button" onClick={() => copy('result')} className="rounded-lg border border-border bg-surface px-3 py-2 text-sm font-semibold hover:border-brand">
+            <div className="mt-3 flex flex-wrap gap-2 sm:mt-4">
+              <button type="button" onClick={() => copy('result')} className="inline-flex min-h-11 items-center rounded-lg border border-field-border bg-surface px-3.5 text-sm font-semibold hover:border-brand">
                 {copied === 'result' ? 'Copied ✓' : 'Copy result'}
               </button>
-              <button type="button" onClick={() => copy('link')} className="rounded-lg border border-border bg-surface px-3 py-2 text-sm font-semibold hover:border-brand">
+              <button type="button" onClick={() => copy('link')} className="inline-flex min-h-11 items-center rounded-lg border border-field-border bg-surface px-3.5 text-sm font-semibold hover:border-brand">
                 {copied === 'link' ? 'Link copied ✓' : 'Copy share link'}
               </button>
             </div>

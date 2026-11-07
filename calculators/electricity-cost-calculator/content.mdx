@@ -1,0 +1,77 @@
+export const howTo = [
+  'Choose whether you know an appliance’s wattage or your total kWh for the month.',
+  'For an appliance, enter its power in watts, how many hours a day it runs and how many days a month you use it.',
+  'Enter your electricity price per kWh from your bill, and pick your currency.',
+  'Read the cost per month, and check the daily and yearly figures and the kWh used.',
+]
+
+export const faq = [
+  {
+    q: 'How do I calculate the cost of electricity?',
+    a: 'Multiply the appliance’s power in watts by the hours it runs, divide by 1,000 to get kilowatt-hours (kWh), then multiply by your price per kWh. A 1,500 W heater running for 4 hours uses 6 kWh; at $0.18 per kWh that costs $1.08.',
+  },
+  {
+    q: 'What is a kWh?',
+    a: 'A kilowatt-hour is the energy used by 1,000 watts running for one hour. It is the unit on your electricity bill. A 100 W device running for 10 hours also uses 1 kWh.',
+  },
+  {
+    q: 'What is the average price of electricity per kWh?',
+    a: 'In the US the average residential price was 18.16 cents per kWh in August 2026 (EIA, preliminary), but it ranges widely by state. In the UK the energy price cap sets the maximum unit rate for most households and is reviewed every quarter. Always use the rate on your own bill for an accurate answer.',
+  },
+  {
+    q: 'How many kWh does a house use per month?',
+    a: 'The average US household uses about 10,500 kWh a year, or roughly 875 kWh a month, according to the EIA. Homes with electric heating or a lot of air conditioning use much more.',
+  },
+  {
+    q: 'Why is my bill higher than the calculator shows?',
+    a: 'Bills usually include fixed daily or monthly standing charges, taxes, and sometimes tiered or time-of-use prices. This calculator covers the energy charge only, so add those fixed charges for a full bill estimate.',
+  },
+]
+
+This electricity cost calculator shows what something costs to run, in whatever currency you pay in. You can work from an appliance’s wattage and how long you use it, or from the kilowatt-hours (kWh) on your bill or smart meter. It gives you the cost per day, per month and per year, and the energy used.
+
+It is useful when you are deciding whether to run a space heater or turn up the central heating, comparing two appliances before you buy, or trying to work out why a bill has jumped. Prices are entered per kWh, so it works whether you pay in cents, pence, fils or halalas.
+
+## The electricity cost formula
+
+Electricity is sold by the kilowatt-hour. One kWh is 1,000 watts used for one hour. The US Energy Information Administration (EIA) gives a simple example: a 40-watt bulb left on for five hours uses 200 watt-hours, or 0.2 kWh.
+
+<Formula>
+Energy per day (kWh) = Power (W) × Hours per day ÷ 1,000
+Cost per month = Energy per day × Days used per month × Price per kWh
+Cost per year = Cost per month × 12
+</Formula>
+
+- **Power (W)** is the wattage on the appliance label or in its manual. If it says kW, multiply by 1,000.
+- **Hours per day** is how long it is actually on.
+- **Price per kWh** is the “unit rate” on your bill, written as a decimal. For example 18¢ is 0.18 and 24.5p is 0.245.
+
+If you choose the monthly kWh option, the calculator multiplies your kWh by your price directly.
+
+## Worked example
+
+A 1,500-watt fan heater is a common way to warm one room. Suppose you run it for 4 hours every evening for a 30-day month, and you pay $0.18 per kWh, close to the US average.
+
+<WorkedExample slug="electricity-cost-calculator" inputs={{ mode: 'watts', watts: 1500, hours: 4, days: 30, rate: 0.18, currency: 'USD' }} />
+
+The heater uses 6 kWh a day, 180 kWh a month. At 18 cents per kWh that is **$32.40 a month**, or about $389 over a year if you used it every month. Put the same numbers in with a 25p UK rate and the monthly cost becomes £45.00.
+
+## Is your result high or low?
+
+The EIA says the average US household uses about **10,500 kWh a year** (around 875 kWh a month). When you cost a single appliance, the calculator shows what share of that average it represents. As a rough guide:
+
+- A Wi-Fi router (about 10 W, on all day) uses under 90 kWh a year: a few dollars.
+- A modern fridge uses a few hundred kWh a year. Use the <CalcLink slug="refrigerator-wattage-calculator">refrigerator wattage calculator</CalcLink> for a closer estimate.
+- A 1,500 W space heater used a few hours a day quickly reaches hundreds of dollars a winter, which is why portable heaters are one of the most expensive ways to heat a whole home.
+
+Prices vary far more than usage. The EIA’s August 2026 US average was 18.16¢ per kWh, but state averages range from around half that to more than double. In the UK, Ofgem’s price cap limits the unit rate most households pay and changes every three months.
+
+## Common mistakes
+
+- **Mixing up watts and kilowatts.** 1.5 kW is 1,500 W. Entering 1.5 in the watts box will make the cost a thousand times too small.
+- **Assuming the label power is used all the time.** Heaters, fridges and air conditioners switch on and off under thermostat control, so their average draw is often well below the label figure. A plug-in energy monitor tells you the real number.
+- **Using a price that includes standing charges.** Divide only the energy part of the bill by the kWh used to get your unit rate.
+- **Forgetting standby power.** Devices left on standby still use a little power 24 hours a day. Over a year it adds up.
+- **Comparing different months.** Bills cover different numbers of days. The daily cost is the fairest comparison.
+
+To see the energy use without a price, for example to size a battery or solar system, use the <CalcLink slug="watts-to-kwh-calculator">watts to kWh calculator</CalcLink>.

@@ -2,4 +2,7 @@
 import type { CalculatorConfig } from '@/lib/engine/types';
 
 export const CALCULATOR_LOADERS: Record<string, () => Promise<{ default: CalculatorConfig }>> = {
+  'btu-calculator': () => import('./btu-calculator/config'),
+  'electricity-cost-calculator': () => import('./electricity-cost-calculator/config'),
+  'heat-index-calculator': () => import('./heat-index-calculator/config'),
 };

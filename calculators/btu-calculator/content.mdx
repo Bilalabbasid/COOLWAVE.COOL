@@ -1,0 +1,96 @@
+export const howTo = [
+  'Measure the room’s length and width and multiply them to get the floor area. Switch to Metric if you measured in metres.',
+  'Choose how sunny the room is. A west- or south-facing room with big windows is “very sunny”; a room under trees or on the north side of the house is “heavily shaded”.',
+  'Enter how many people normally use the room at the same time.',
+  'Tick the kitchen box if the unit will cool a kitchen.',
+  'Read the recommended capacity in BTU/h and shop for a unit rated at or just above it.',
+]
+
+export const faq = [
+  {
+    q: 'How many BTU do I need per square foot?',
+    a: 'Roughly 20 to 30 BTU per hour per square foot for a typical room with 8 ft ceilings. The ENERGY STAR chart gives 8,000 BTU/h for 300 to 350 sq ft and 12,000 BTU/h for 450 to 550 sq ft. Small rooms need proportionally more per square foot than large ones.',
+  },
+  {
+    q: 'What size air conditioner do I need for a 12x12 room?',
+    a: 'A 12 by 12 ft room is 144 sq ft, which falls in the 100 to 150 sq ft band of the ENERGY STAR chart, so 5,000 BTU/h. Add 10% if it is very sunny, 600 BTU/h for each extra person over two, and 4,000 BTU/h if it is a kitchen.',
+  },
+  {
+    q: 'Is it bad to buy an air conditioner that is too big?',
+    a: 'Yes. An oversized unit cools the air quickly and switches off before it has removed much moisture, so the room can feel cold and clammy. It also cycles on and off more often, which wastes energy. ENERGY STAR recommends matching the capacity to the room.',
+  },
+  {
+    q: 'How do I convert BTU to kW or tons?',
+    a: 'Multiply BTU per hour by 0.000293 to get kilowatts, so 12,000 BTU/h is about 3.52 kW. Divide BTU per hour by 12,000 to get tons of cooling, so 24,000 BTU/h is 2 tons. The calculator shows all three.',
+  },
+  {
+    q: 'Does ceiling height change the BTU I need?',
+    a: 'Yes. The ENERGY STAR chart assumes 8 ft ceilings. A room with higher ceilings holds more air and usually needs a larger unit, so if your ceilings are 10 ft or more, consider the next size up or get a professional load calculation.',
+  },
+]
+
+A BTU calculator tells you how much cooling power a room air conditioner needs. Window, through-the-wall and portable units are all rated in **British thermal units per hour (BTU/h)**: the amount of heat they can pull out of a room every hour. Buy too little and the room never gets comfortable on a hot afternoon. Buy too much and the unit short-cycles, wastes electricity and leaves the air damp.
+
+This calculator uses the sizing method published by ENERGY STAR, the US Environmental Protection Agency’s efficiency programme. It is designed for a single room. If you are sizing central air or a heat pump for a whole house, use the <CalcLink slug="ac-tonnage-calculator">AC tonnage calculator</CalcLink> as a first estimate and ask an installer for a Manual J load calculation.
+
+## How the BTU calculation works
+
+ENERGY STAR starts from the room’s floor area and a sizing chart that assumes 8 ft (2.4 m) ceilings. It then adjusts for the three things that most change how much heat a room gains.
+
+<Formula>
+Capacity (BTU/h) = Chart value × Sun factor + 600 × (People − 2) + Kitchen allowance
+</Formula>
+
+- **Chart value**: the capacity for your floor area from the table below.
+- **Sun factor**: 0.9 for a heavily shaded room, 1.0 for average, 1.1 for a very sunny room.
+- **People**: each person gives off heat, so add 600 BTU/h for every regular occupant beyond two.
+- **Kitchen allowance**: 4,000 BTU/h if the room is a kitchen, to cover heat from cooking.
+
+| Floor area (sq ft) | Floor area (m²) | Capacity (BTU/h) |
+| --- | --- | --- |
+| 100 to 150 | 9.3 to 13.9 | 5,000 |
+| 150 to 250 | 13.9 to 23.2 | 6,000 |
+| 250 to 300 | 23.2 to 27.9 | 7,000 |
+| 300 to 350 | 27.9 to 32.5 | 8,000 |
+| 350 to 400 | 32.5 to 37.2 | 9,000 |
+| 400 to 450 | 37.2 to 41.8 | 10,000 |
+| 450 to 550 | 41.8 to 51.1 | 12,000 |
+| 550 to 700 | 51.1 to 65.0 | 14,000 |
+| 700 to 1,000 | 65.0 to 92.9 | 18,000 |
+| 1,000 to 1,200 | 92.9 to 111.5 | 21,000 |
+| 1,200 to 1,400 | 111.5 to 130.1 | 23,000 |
+| 1,400 to 1,500 | 130.1 to 139.4 | 24,000 |
+| 1,500 to 2,000 | 139.4 to 185.8 | 30,000 |
+| 2,000 to 2,500 | 185.8 to 232.3 | 34,000 |
+
+Each band includes its lower number and runs up to, but not including, the next. The square-metre column is our conversion; ENERGY STAR publishes square feet only.
+
+## Worked example
+
+Say you want to cool an open-plan kitchen and dining room measuring 20 ft by 20 ft (400 sq ft). It faces west and gets the afternoon sun, and three people usually eat there.
+
+1. 400 sq ft is in the 400 to 450 band, so the chart value is 10,000 BTU/h.
+2. Very sunny: 10,000 × 1.1 = 11,000 BTU/h.
+3. One person over two: + 600 BTU/h.
+4. It is a kitchen: + 4,000 BTU/h.
+
+<WorkedExample slug="btu-calculator" inputs={{ area: 400, sun: 'sunny', people: 3, kitchen: true }} />
+
+The room needs about **15,600 BTU/h**, roughly 4.57 kW or 1.3 tons. Without the kitchen and the extra person it would need only 11,000 BTU/h, which shows how much those adjustments matter.
+
+## How to read your result
+
+Room air conditioners are sold in steps, so you will rarely find a unit that exactly matches your number. Pick the closest size **at or slightly above** the result. Going one step up is fine; going two or three steps up is where clammy, short-cycling problems start.
+
+Outside the US you will often see capacity in kilowatts, which is why the result is also shown in kW. Split systems in Australia, the UK and the Gulf are commonly labelled in kW (for example 2.5 kW, 3.5 kW, 5 kW), while many are also marketed as “9,000 BTU” or “12,000 BTU”. In the US, central systems are sold in tons, where one ton equals 12,000 BTU/h. For a quick conversion between the two, use the <CalcLink slug="btu-to-watts-converter">BTU to watts converter</CalcLink>.
+
+As a rough sense check, most bedrooms land between 5,000 and 8,000 BTU/h and most living rooms between 8,000 and 14,000 BTU/h. If your result is far outside that, double-check the area you entered.
+
+## Common mistakes
+
+- **Using the whole floor plan.** Enter only the space the unit will actually cool. A window unit in a bedroom will not cool the hallway, even if the door is open.
+- **Ignoring the sun.** A sunny room with large west-facing windows can need noticeably more capacity than the same room on the shady side of the house.
+- **Forgetting the kitchen.** Cooking adds a lot of heat. ENERGY STAR’s 4,000 BTU/h kitchen allowance is larger than the gap between several chart bands.
+- **Assuming bigger is better.** An oversized unit removes heat fast but not moisture, so the room feels cold and damp. It also uses more power starting and stopping.
+- **High ceilings.** The chart assumes 8 ft ceilings. Vaulted or double-height rooms hold far more air, so the chart will undersize them.
+- **Using a room chart for a whole house.** Whole-house systems depend on insulation, windows, duct leaks and your climate. That needs a proper load calculation.

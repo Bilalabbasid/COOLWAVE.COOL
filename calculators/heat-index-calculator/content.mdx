@@ -1,0 +1,90 @@
+export const howTo = [
+  'Enter the air temperature from a weather report or a thermometer in the shade. Use the unit toggle for °C.',
+  'Enter the relative humidity as a percentage (0 to 100).',
+  'Read the heat index: how hot it feels to your body.',
+  'Check the NWS level under the result and plan breaks, water and shade to match.',
+]
+
+export const faq = [
+  {
+    q: 'What is a dangerous heat index?',
+    a: 'The National Weather Service classes a heat index of 103 to 124 °F (39 to 51 °C) as Danger, where heat cramps or heat exhaustion are likely, and 125 °F (52 °C) or more as Extreme Danger, where heat stroke is highly likely. Even 90 to 103 °F calls for extreme caution if you are active outdoors.',
+  },
+  {
+    q: 'Is the heat index the same as the “feels like” temperature?',
+    a: 'In hot weather, yes: weather apps usually show the heat index as the feels-like temperature when it is warm and humid. In cold weather the feels-like figure is usually the wind chill instead, which uses a different formula.',
+  },
+  {
+    q: 'Why does humidity make it feel hotter?',
+    a: 'Your body cools itself by evaporating sweat. When the air is already full of moisture, sweat evaporates more slowly, so you lose heat less efficiently and feel hotter than the thermometer reading.',
+  },
+  {
+    q: 'How do you calculate the heat index?',
+    a: 'The NWS first uses a simple formula. If that gives 80 °F or more, it switches to the Rothfusz regression, a nine-term equation in temperature (°F) and relative humidity (%), and then applies small corrections for very dry or very humid air. This calculator follows those steps exactly.',
+  },
+  {
+    q: 'Does the heat index include sunshine?',
+    a: 'No. Heat index values are for shady, light-wind conditions. The NWS says direct sunlight can raise the heat index by up to 15 °F (about 8 °C).',
+  },
+  {
+    q: 'Why is there no result for very hot temperatures?',
+    a: 'The heat index equation is only valid within the range of the original research it was fitted to. Above 110 °F, or when the result would pass about 137 °F, we show a warning instead of a number because the formula is no longer reliable and conditions are already extremely dangerous.',
+  },
+]
+
+The heat index combines air temperature and relative humidity into one number: an estimate of how hot the conditions feel to a person in the shade. It was developed by R. G. Steadman in 1979 and is the measure the US National Weather Service (NWS) uses to issue heat advisories and warnings. This calculator uses the exact NWS algorithm, works in Fahrenheit or Celsius, and tells you which NWS warning level your result falls in.
+
+It is useful for anyone planning work, sport or travel in hot weather, for parents and carers deciding whether it is safe to be outdoors, and for students checking a weather-science assignment.
+
+## The heat index formula
+
+The NWS calculates the heat index in two stages. First it tries a simple formula that agrees with Steadman’s results at lower values:
+
+<Formula>
+HI = 0.5 × (T + 61.0 + (T − 68.0) × 1.2 + RH × 0.094)
+</Formula>
+
+If the average of that result and the temperature is 80 °F or higher, it uses the more accurate **Rothfusz regression** instead:
+
+<Formula>
+HI = −42.379 + 2.04901523·T + 10.14333127·RH − 0.22475541·T·RH − 0.00683783·T² − 0.05481717·RH² + 0.00122874·T²·RH + 0.00085282·T·RH² − 0.00000199·T²·RH²
+</Formula>
+
+- **T** is the air temperature in °F.
+- **RH** is the relative humidity in percent, for example 50 for 50%.
+
+Two corrections follow. In very dry air (RH below 13% at 80 to 112 °F), a small amount is subtracted. In very humid air (RH above 85% at 80 to 87 °F), a small amount is added. If you enter °C, we convert to °F, run the same steps, and convert the result back.
+
+## Worked example
+
+The NWS uses this example: an air temperature of **96 °F with 65% relative humidity**.
+
+<WorkedExample slug="heat-index-calculator" inputs={{ temp: 96, rh: 65 }} />
+
+The heat index is **121 °F**, matching the NWS chart. That is 25 degrees hotter than the thermometer reading and well inside the NWS Danger band.
+
+## What your result means
+
+The NWS groups heat index values into four levels:
+
+| Heat index | NWS level | Possible effects with prolonged exposure or activity |
+| --- | --- | --- |
+| 80–90 °F (27–32 °C) | Caution | Fatigue possible |
+| 90–103 °F (32–39 °C) | Extreme caution | Heat stroke, heat cramps or heat exhaustion possible |
+| 103–124 °F (39–51 °C) | Danger | Heat cramps or heat exhaustion likely; heat stroke possible |
+| 125 °F (52 °C) or more | Extreme danger | Heat stroke highly likely |
+
+Local thresholds for heat advisories vary. Places that are used to heat often wait for higher values before issuing warnings, so always follow your local forecast office or national weather service.
+
+## Accuracy and limits
+
+The Rothfusz regression is a curve fitted to Steadman’s tables. The NWS says it is accurate to about **±1.3 °F**. We test this calculator against more than 50 cells of the official NWS chart. Almost all agree within 1.5 °F; the exception is the most humid corner of the chart (80 °F at 95 to 100% humidity), where the official high-humidity correction reads about 2 °F above the printed chart. We follow the published formula exactly rather than adjust it.
+
+The formula is not valid for extreme combinations of heat and humidity beyond the range of Steadman’s data. That is why this calculator gives a warning, not a number, above 110 °F or when the heat index would exceed about 137 °F. It is also not meant for cool weather: below 80 °F the heat index stays close to the air temperature, and in the cold you should use the <CalcLink slug="wind-chill-calculator">wind chill calculator</CalcLink>.
+
+## Common mistakes
+
+- **Using a sun-baked thermometer.** Car and porch thermometers in direct sun read high. Use shade temperatures, as weather stations do.
+- **Entering the dew point as humidity.** Relative humidity is a percentage. If you only know the dew point, convert it first with the <CalcLink slug="relative-humidity-calculator">relative humidity calculator</CalcLink>.
+- **Treating the number as a safety guarantee.** Heat illness can occur at lower values for children, older people, people on some medications and anyone exercising hard.
+- **Forgetting the sun.** Working in direct sunlight can add up to 15 °F to the value shown here.

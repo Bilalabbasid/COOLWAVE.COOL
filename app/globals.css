@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+/* Manual dark mode via <html data-theme="dark">; system preference sets it before paint. */
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+:root {
+  --bg: #f7fafc;
+  --surface: #ffffff;
+  --surface-2: #eef6f8;
+  --text: #0f1f2e;
+  --muted: #475a6b;
+  --border: #d5e3ea;
+  --brand: #0b6e99;
+  --brand-strong: #075074;
+  --accent: #0b7d77;
+  --accent-soft: #d8f3f0;
+  --focus: #f59e0b;
+  --good: #137a3e;
+  --caution: #8a5a00;
+  --danger: #b42318;
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --bg: #0a1620;
+  --surface: #0f202d;
+  --surface-2: #132a3a;
+  --text: #e6f0f5;
+  --muted: #a3b8c6;
+  --border: #23394a;
+  --brand: #5cc3ee;
+  --brand-strong: #8fd8f5;
+  --accent: #3fd0c4;
+  --accent-soft: #10373a;
+  --focus: #fbbf24;
+  --good: #5fd28d;
+  --caution: #f4c35a;
+  --danger: #ff8a7a;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-brand: var(--brand);
+  --color-brand-strong: var(--brand-strong);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-good: var(--good);
+  --color-caution: var(--caution);
+  --color-danger: var(--danger);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Long-form content (calculator explainers and blog posts) */
+.prose-cw {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--text);
+}
+.prose-cw > * + * { margin-top: 1rem; }
+.prose-cw h2 { font-size: 1.5rem; line-height: 1.3; font-weight: 700; margin-top: 2.5rem; scroll-margin-top: 5rem; }
+.prose-cw h3 { font-size: 1.2rem; line-height: 1.35; font-weight: 650; margin-top: 1.75rem; }
+.prose-cw a { color: var(--brand); text-decoration: underline; text-underline-offset: 3px; }
+.prose-cw a:hover { color: var(--brand-strong); }
+.prose-cw ul { list-style: disc; padding-left: 1.4rem; }
+.prose-cw ol { list-style: decimal; padding-left: 1.4rem; }
+.prose-cw li + li { margin-top: 0.4rem; }
+.prose-cw strong { font-weight: 650; }
+.prose-cw code { font-size: 0.92em; background: var(--surface-2); padding: 0.1rem 0.35rem; border-radius: 4px; }
+.prose-cw blockquote { border-left: 4px solid var(--accent); padding: 0.25rem 0 0.25rem 1rem; color: var(--muted); }
+.prose-cw table { width: 100%; border-collapse: collapse; font-size: 0.95rem; display: block; overflow-x: auto; }
+.prose-cw th, .prose-cw td { border: 1px solid var(--border); padding: 0.5rem 0.65rem; text-align: left; vertical-align: top; }
+.prose-cw th { background: var(--surface-2); font-weight: 650; }
+.prose-cw .formula { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem 1rem; overflow-x: auto; white-space: pre-wrap; }
+
+/* Hide number spinners: they are hard to hit on phones and change values by accident. */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+input[type="number"] { -moz-appearance: textfield; appearance: textfield; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}

@@ -4,6 +4,7 @@ import { Breadcrumb } from '@/components/Breadcrumb';
 import { CalculatorCard, PostCard } from '@/components/Cards';
 import { CATEGORIES, getCategory } from '@/lib/categories';
 import { calculatorsInCategory, postsInCategory } from '@/lib/registry';
+import { pageMeta } from '@/lib/meta';
 
 export const dynamicParams = false;
 
@@ -14,11 +15,11 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps<'/category/[slug]'>): Promise<Metadata> {
   const cat = getCategory((await params).slug);
   if (!cat) return {};
-  return {
+  return pageMeta({
     title: `${cat.name} Calculators`,
     description: `${cat.short} Free ${cat.name.toLowerCase()} calculators with imperial and metric units, checked against primary sources.`.slice(0, 155),
-    alternates: { canonical: `/category/${cat.slug}` },
-  };
+    path: `/category/${cat.slug}`,
+  });
 }
 
 export default async function CategoryPage({ params }: PageProps<'/category/[slug]'>) {

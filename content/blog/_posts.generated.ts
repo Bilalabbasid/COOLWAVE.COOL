@@ -3,6 +3,40 @@ import type { PostMeta } from '@/lib/registry-types';
 
 export const POSTS: PostMeta[] = [
   {
+    "slug": "what-is-dew-point",
+    "title": "What Is Dew Point? Meaning and Comfort Chart",
+    "description": "Dew point is the temperature air must cool to for saturation. Learn how it differs from humidity, which dew points feel muggy, and how to calculate it.",
+    "date": "2026-11-08",
+    "updated": "2026-11-08",
+    "category": "weather-heat",
+    "calculator": "dew-point-calculator",
+    "keyword": "what is dew point",
+    "image": "/images/blog/what-is-dew-point.webp",
+    "imageAlt": "Dew droplets on blades of grass at sunrise in soft blue morning light",
+    "faq": [
+      {
+        "q": "What is a comfortable dew point?",
+        "a": "Most people find summer dew points in the 50s °F comfortable. The National Weather Service describes 55 °F or lower as dry and comfortable, 55 to 65 °F as becoming sticky, and 65 °F or higher as oppressive."
+      },
+      {
+        "q": "Is dew point or relative humidity better for judging how humid it feels?",
+        "a": "Dew point. Relative humidity changes with temperature, while the dew point tracks the actual amount of water vapor in the air. The NWS notes that 80 °F with a 60 °F dew point feels far more humid than 30 °F with a 30 °F dew point, even though the second has 100% relative humidity."
+      },
+      {
+        "q": "Can the dew point be higher than the air temperature?",
+        "a": "No, not in a steady state. When the air cools to its dew point it is saturated, and any extra cooling makes water condense as dew, fog or cloud. The dew point can equal the air temperature, which means 100% relative humidity."
+      },
+      {
+        "q": "What dew point is dangerous?",
+        "a": "The dew point alone is not a danger scale. Heat risk depends on temperature and humidity together, which is what the heat index measures. High dew points in the 70s °F on a hot day push the heat index into the NWS caution and danger ranges."
+      },
+      {
+        "q": "Why do windows fog up inside?",
+        "a": "Glass that is colder than the indoor air's dew point cools the air touching it below saturation, so water condenses. At 70 °F and 50% humidity the indoor dew point is about 50 °F, so any surface colder than that can collect moisture."
+      }
+    ]
+  },
+  {
     "slug": "what-is-heat-index",
     "title": "What Is the Heat Index? Meaning, Chart and Danger Levels",
     "description": "The heat index is how hot it feels when humidity is added to air temperature. See the NWS formula, a chart, danger levels and a worked example.",
@@ -39,5 +73,6 @@ export const POSTS: PostMeta[] = [
 ];
 
 export const POST_LOADERS: Record<string, () => Promise<{ default: import("mdx/types").MDXContent }>> = {
+  'what-is-dew-point': () => import('./what-is-dew-point.mdx'),
   'what-is-heat-index': () => import('./what-is-heat-index.mdx'),
 };

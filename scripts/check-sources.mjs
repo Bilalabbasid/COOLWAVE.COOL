@@ -17,8 +17,11 @@ walk(path.join(root, 'content', 'blog'));
 const urls = new Map();
 for (const f of files) {
   const text = fs.readFileSync(f, 'utf8');
-  for (const m of text.matchAll(/https?:\/\/[^\s"'`)<>\]]+/g)) {
-    const u = m[0].replace(/[.,;]+$/, '');
+  for (const m of text.matchAll(/https?:\/\/[^\s"'`<>\]]+/g)) {
+    let u = m[0].replace(/[.,;]+$/, '');
+    if (u.endsWith(')') && (u.match(/\(/g) || []).length < (u.match(/\)/g) || []).length) {
+      u = u.slice(0, -1);
+    }
     if (/amazon\.com\/s\?/.test(u)) continue;
     if (!urls.has(u)) urls.set(u, new Set());
     urls.get(u).add(path.relative(root, f));
@@ -30,7 +33,7 @@ async function check(u) {
   for (const method of ['HEAD', 'GET']) {
     try {
       const res = await fetch(u, { method, redirect: 'follow', headers: { 'User-Agent': UA, Accept: 'text/html,application/pdf,*/*' }, signal: AbortSignal.timeout(20000) });
-      if (res.ok) return { status: res.status };
+      if (res.ok) return { status: 200 };
       if (method === 'GET') return { status: res.status };
     } catch (e) {
       if (method === 'GET') return { status: 0, error: String(e.cause?.code ?? e.message) };

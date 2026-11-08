@@ -1,0 +1,78 @@
+export const howTo = [
+  'Enter your device power in watts (W) or kilowatts (kW) from the product label or manual.',
+  'Enter the number of hours the appliance is turned on each day.',
+  'Adjust the duty cycle percentage if the device cycles on and off (use 100% for continuous devices like lamps or televisions).',
+  'Select how many days per week you operate the device.',
+  'Read the calculated kilowatt-hours (kWh) consumed per day, week, month, and year.',
+];
+
+export const faq = [
+  {
+    q: 'How do you convert watts to kilowatt-hours (kWh)?',
+    a: 'Multiply the appliance wattage by operating hours, then divide by 1,000. For example, a 100-watt light bulb running for 10 hours uses (100 × 10) ÷ 1,000 = 1.0 kWh.',
+  },
+  {
+    q: 'What is the difference between a watt and a kilowatt-hour?',
+    a: 'A watt (W) measures the rate of electrical power at an exact instant. A kilowatt-hour (kWh) measures the cumulative volume of electrical energy consumed over time. Electric utilities bill based on kilowatt-hours.',
+  },
+  {
+    q: 'What is a duty cycle on a refrigerator or air conditioner?',
+    a: 'A duty cycle is the percentage of time an appliance’s compressor or heating element actually draws full power while switched on. A refrigerator might remain plugged in 24 hours a day, but with a 35% duty cycle its compressor only runs for about 8.4 hours daily.',
+  },
+  {
+    q: 'How many kWh does an average home use each month?',
+    a: 'According to the U.S. Energy Information Administration (EIA), the average American residential utility customer consumes approximately 875 kWh per month, or about 10,500 kWh annually.',
+  },
+  {
+    q: 'How can I find the exact wattage of my appliance?',
+    a: 'Look for the manufacturer nameplate or specification sticker on the back or bottom of the device, listed as "W" or "Watts". Alternatively, multiply voltage (typically 120V in North America) by rated amperage (A) to find maximum wattage.',
+  },
+];
+
+Every household appliance draws electrical power, but electric utility bills are measured and charged in kilowatt-hours (kWh). Converting the wattage stamped on a device’s specification label into kilowatt-hours helps you anticipate electricity bills and discover which appliances consume the largest slice of your monthly budget.
+
+This calculator converts watts (or kilowatts) and daily run times into total energy consumption per day, week, month, and year, with an optional duty cycle adjustment for cycling appliances like fridges and heat pumps.
+
+## The watts to kWh conversion formula
+
+According to the U.S. Energy Information Administration (EIA), one kilowatt-hour represents 1,000 watts of electrical power delivered continuously for one hour:
+
+<Formula>
+Daily energy (kWh) = Power (watts) × Daily hours × (Duty cycle % ÷ 100) ÷ 1,000
+Weekly energy (kWh) = Daily energy × Days used per week
+Yearly energy (kWh) = (Weekly energy × 365) ÷ 7
+Monthly energy (kWh) = Yearly energy ÷ 12
+</Formula>
+
+Where:
+- **Power** is rated electrical draw in watts (W) or kilowatts (kW, where 1 kW = 1,000 W).
+- **Daily hours** represents the total hours the appliance is energized per 24-hour day.
+- **Duty cycle** is the percentage of on-time the compressor or heating element draws peak current.
+
+## Worked example: 100-watt fixture used 10 hours daily
+
+Consider a 100-watt fixture or entertainment center operating 10 hours every day with a continuous 100% duty cycle:
+
+<WorkedExample slug="watts-to-kwh-calculator" inputs={{ powerUnit: 'W', watts: 100, hours: 10, duty: 100, daysPerWeek: 7 }} />
+
+1. Power = 100 W; Daily run time = 10 hours.
+2. Daily energy: (100 × 10 × 1.0) ÷ 1,000 = **1.000 kWh per day** (1,000 Wh).
+3. Weekly energy: 1.000 × 7 = **7.00 kWh per week**.
+4. Yearly energy: (7.00 × 365) ÷ 7 = **365 kWh per year**.
+5. Average monthly energy: 365 ÷ 12 ≈ **30.4 kWh per month**.
+6. This single load represents roughly 3.5% of an average U.S. home’s yearly electricity usage (about 10,500 kWh, EIA).
+
+## Typical household appliance wattage and energy use
+
+| Household appliance | Typical power (W) | Typical daily run time | Duty cycle | Estimated monthly kWh |
+|---|---|---|---|---|
+| LED light bulb | 10 W | 6 hours | 100% | 1.8 kWh |
+| Desktop computer with monitor | 150 W | 8 hours | 100% | 36.0 kWh |
+| Refrigerator (modern ENERGY STAR) | 150 W | 24 hours | 35% | 37.8 kWh |
+| Window air conditioner | 1,000 W | 8 hours | 60% | 144.0 kWh |
+| Portable space heater (high) | 1,500 W | 6 hours | 70% | 189.0 kWh |
+| Central air conditioner (3-ton) | 3,500 W | 8 hours | 65% | 546.0 kWh |
+
+## Calculating dollar costs from kWh
+
+Once you know the kilowatt-hours an appliance uses, multiply by your utility’s price per kWh to calculate actual operating cost. To see dollar totals for specific appliances or simulate peak and off-peak tariffs, explore our <CalcLink slug="electricity-cost-calculator">electricity cost calculator</CalcLink> or compare heating bills using our <CalcLink slug="space-heater-cost-calculator">space heater cost calculator</CalcLink>.

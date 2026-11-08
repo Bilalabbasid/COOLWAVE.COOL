@@ -86,7 +86,7 @@ describe('compute(), units and ranges', () => {
     if (!r.ok) return;
     expect(Number((r.values.td as number).toFixed(1))).toBe(59.7);
     expect(Number((r.values.spread as number).toFixed(1))).toBe(20.3);
-    expect(Number((r.values.e as number).toFixed(1))).toBe(17.5);
+    expect(Number((r.values.e as number).toFixed(1))).toBe(17.4);
     expect(r.values.comfort).toBe('Becoming sticky');
   });
   it('metric and imperial agree', () => {

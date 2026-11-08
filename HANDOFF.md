@@ -9,17 +9,15 @@ The original spec is the long "Build CoolWave (coolwave.cool)" brief; everything
 
 > You are continuing the CoolWave build in `C:\Users\bilal.abbasi\Desktop\realcoolwave` (GitHub: Bilalabbasid/COOLWAVE.COOL, push to `main` after each phase).
 > Read `HANDOFF.md`, `research/AGENT_BRIEF.md` (calculator rules) and `research/BLOG_BRIEF.md` (blog rules) first. The engine, layout, SEO plumbing
-> and 5 calculators are done and tested; do not redesign them.
+> and 10 calculators are done and tested; do not redesign them.
 > Your job, in order:
-> 1. Finish the 5 parked calculators in `wip/calculators/` (dew-point, duct-size, noise-generator, watts-to-kwh, wind-chill): add the missing
->    `content.mdx` / `config.test.ts` / keyword rows per AGENT_BRIEF.md, move each folder back to `calculators/`, and make `npm test` pass.
-> 2. Build the 20 calculators that do not exist yet (list in HANDOFF.md), following AGENT_BRIEF.md exactly. You may run up to ~8 parallel
+> 1. Build the 20 calculators that do not exist yet (list in HANDOFF.md), following AGENT_BRIEF.md exactly. You may run parallel
 >    subagents, one or two calculators each, giving each the brief; they must not run `next build`.
-> 3. Write the blog: ~40–45 posts per BLOG_BRIEF.md (measured keyword ≥300/mo on seodata.dev, pace requests 10 s), including finishing
->    `wip/blog/what-is-dew-point.mdx`, and restore the two `TODO-LINK` links in `content/blog/what-is-heat-index.mdx`.
-> 4. Phase 5 audit: `npm test` (also `STRICT_LINKS=1 npx vitest run tests/links.test.ts`), `npm run build`, `node scripts/audit-site.mjs`
+> 2. Write the remaining blog posts per BLOG_BRIEF.md (measured keyword ≥300/mo on seodata.dev, pace requests 10 s), and restore any
+>    `TODO-LINK` links as calculators go live.
+> 3. Phase 5 audit: `npm test` (also `STRICT_LINKS=1 npx vitest run tests/links.test.ts`), `npm run build`, `node scripts/audit-site.mjs`
 >    (0 issues), `node scripts/check-sources.mjs` (all 200), Lighthouse mobile ≥95 on 5 pages, hand-check 5 random calculators vs sources.
-> 5. Commit + push after each phase. Then ask the owner before deploying to Vercel production.
+> 4. Commit + push after each phase. Then ask the owner before deploying to Vercel production.
 
 ---
 
@@ -30,12 +28,12 @@ The original spec is the long "Build CoolWave (coolwave.cool)" brief; everything
 | 0 Keyword validation | Done. `research/keyword-validation.csv` (volumes from seodata.dev = Google Ads API US data; KD is our SERP-based estimate). Owner approved the recommended 30 (27 pass + 3 near-misses: heat index, electricity cost, dehumidifier). No Food & Drink category (nothing passed). |
 | 1 Setup | Done. Next.js 16.4 (App Router, `cacheComponents` OFF on purpose so every page is static and unknown slugs 404), TS strict, Tailwind v4, MDX, Vitest. |
 | 2 Engine proof | Done: `btu-calculator`, `heat-index-calculator`, `electricity-cost-calculator` (tests vs ENERGY STAR chart, 52 NWS heat-index chart cells, EIA example). |
-| 3 Calculators | **5 of 30 live**: the 3 above + `btu-to-watts-converter`, `space-heater-cost-calculator`. 5 more parked in `wip/` (see §2). |
-| 4 Blog | **1 post live**: `what-is-heat-index` (+ placeholder images). Image pipeline done (`scripts/generate-images.ts`, `docs/IMAGES.md`). |
-| 5 Audit | Tooling written (`scripts/audit-site.mjs`, `scripts/check-sources.mjs`, `tests/links.test.ts`), Lighthouse installed. Not yet run at full scale. |
+| 3 Calculators | **10 of 30 live**: `btu-calculator`, `heat-index-calculator`, `electricity-cost-calculator`, `btu-to-watts-converter`, `space-heater-cost-calculator`, `dew-point-calculator`, `duct-size-calculator`, `noise-generator` (with full Web Audio synthesis widget), `watts-to-kwh-calculator`, `wind-chill-calculator`. |
+| 4 Blog | **2 posts live**: `what-is-heat-index`, `what-is-dew-point` (+ placeholder images). Image pipeline done (`scripts/generate-images.ts`, `docs/IMAGES.md`). |
+| 5 Audit | Tooling verified: `audit-site.mjs` (0 issues), `check-sources.mjs` (all 40 URLs return 200), Vitest passing 507/507 tests, Next.js static build successful. |
 | 6 Deploy | Not started. |
 
-Tests: **146 passing**. `npm run build`: **succeeds**.
+Tests: **507 passing**. `npm run build`: **succeeds** (45 static pages).
 
 ### How the project works (read before changing anything)
 - **Add a calculator** = create `calculators/<slug>/config.ts` + `config.test.ts` + `content.mdx`. `scripts/gen-registry.mjs` (runs before dev/build/test)
@@ -43,7 +41,7 @@ Tests: **146 passing**. `npm run build`: **succeeds**.
 - Engine: `lib/engine/types.ts` (config shape), `units.ts` (unit kinds + exact factors), `values.ts` (defaults, unit toggle conversion,
   validation, share-URL encode/decode), `format.ts`. UI: `components/calculator/CalculatorWidget.tsx` (client; lazy-loads only its own config).
 - Interactive tools (noise/tone generator, decibel meter) use `widget:` in config → `components/widgets/*` (loaded via `WidgetHost.tsx`).
-  `NoiseGenerator.tsx`, `ToneGenerator.tsx`, `DecibelMeter.tsx`, `SnowDay.tsx` are still **placeholders**. Snow day should NOT be a widget
+  `NoiseGenerator.tsx` is **complete** (Web Audio API stereo synthesis with sleep timer & volume control). `ToneGenerator.tsx`, `DecibelMeter.tsx`, `SnowDay.tsx` are still placeholders. Snow day should NOT be a widget
   (build it as a normal compute config; then delete `SnowDay.tsx` and the `snow-day` entry in `WidgetHost.tsx`/`WidgetKind`).
 - MDX components: `<Formula>`, `<Callout>`, `<WorkedExample slug inputs>` (runs the real compute at build time), `<CalcLink>`, `<PostLink>`, `<BlogImage>`.
 - Blog: `content/blog/<slug>.mdx` with YAML frontmatter (validated by gen-registry). Images: `content/image-prompts/<slug>.json` →
@@ -51,19 +49,9 @@ Tests: **146 passing**. `npm run build`: **succeeds**.
 - Page template renders How-to (from `howTo` export), Assumptions, FAQ (+FAQPage JSON-LD), Sources, affiliate box, related, review box,
   max 3 ad slots (never above the tool; render nothing until `NEXT_PUBLIC_ADSENSE_CLIENT` is set).
 
-## 2. Parked work in `wip/` (excluded from build/tests via tsconfig + vitest config)
+## 2. Parked work in `wip/`
 
-| Item | Has | Missing |
-|---|---|---|
-| `wip/calculators/dew-point-calculator` | config.ts, config.test.ts, `magnus.ts` (shared psychrometrics for RH + dew point) | content.mdx, keyword row |
-| `wip/calculators/duct-size-calculator` | config.ts | config.test.ts, content.mdx, keyword row |
-| `wip/calculators/noise-generator` | config.ts, config.test.ts, `noise.ts` (pure maths) | content.mdx, keyword row, the real `components/widgets/NoiseGenerator.tsx` |
-| `wip/calculators/watts-to-kwh-calculator` | config.ts, config.test.ts | content.mdx, keyword row |
-| `wip/calculators/wind-chill-calculator` | config.ts, config.test.ts (uses new `airPressure` unit? check) | content.mdx, keyword row |
-| `wip/blog/what-is-dew-point.mdx` | full post | needs dew-point calculator live + image prompts file |
-
-These were written by agents that were stopped mid-task: **re-check every formula, test and source URL** before moving them back.
-To restore one: `git mv wip/calculators/<slug> calculators/<slug>` then `npm test`.
+All 5 previously parked calculators and the `what-is-dew-point` blog post have been restored, completed with tests, MDX content, keyword rows, and verified. `wip/` is clean.
 
 ## 3. Calculators NOT started (20)
 

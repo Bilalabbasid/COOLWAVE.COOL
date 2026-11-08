@@ -1,0 +1,73 @@
+export const howTo = [
+  'Select your preferred noise color: White, Pink, or Brown noise.',
+  'Click the Play button to start sound playback directly in your browser.',
+  'Adjust the volume slider to a gentle, non-intrusive listening level.',
+  'Select an optional sleep timer (15, 30, 60, or 120 minutes) to automatically fade out the sound before stopping.',
+];
+
+export const faq = [
+  {
+    q: 'What is the acoustic difference between white, pink, and brown noise?',
+    a: 'White noise has equal energy across all audible frequencies (0 dB/octave), sounding like static. Pink noise decreases in energy by 3 dB per octave, providing equal energy per octave band (like steady rain). Brown noise decreases by 6 dB per octave, emphasizing deep, low frequencies like a distant waterfall.',
+  },
+  {
+    q: 'Which noise color is best for sleep and relaxation?',
+    a: 'Many people prefer pink or brown noise for sleeping because their attenuated high frequencies feel gentler on the ears than harsh white noise. Systematic reviews in Sleep Medicine Reviews show consistent background sound can mask intrusive sudden noises that trigger wakefulness.',
+  },
+  {
+    q: 'Is it safe to run a noise generator all night?',
+    a: 'Yes, provided the volume is kept moderate (below 60 dBA at ear level). The National Institute on Deafness and Other Communication Disorders (NIDCD) notes that sounds below 70 dBA are unlikely to cause hearing loss even with prolonged exposure.',
+  },
+  {
+    q: 'How should I position a noise generator near an infant or child?',
+    a: 'A study published in Pediatrics advises placing noise machines at least 7 feet (2 meters) away from an infant’s crib and keeping the volume comfortably below maximum to protect developing ears.',
+  },
+  {
+    q: 'Does this white noise generator upload or record any audio?',
+    a: 'No. The audio is generated entirely on your device using the browser’s Web Audio API. No microphone access is requested, and no audio data is transmitted over the internet.',
+  },
+];
+
+Background noise generators help block sudden environmental sounds, promote deeper sleep, and boost concentration during work. By providing a steady auditory carpet, continuous broadband sound raises the ambient noise floor so unexpected door slams, barking dogs, or passing traffic fail to trigger your brain’s startle reflex.
+
+This tool produces pure white, pink, and brown noise synthesis directly in your browser without external audio streams, apps, or sign-ups.
+
+## The spectral physics of noise colors
+
+Noise colors are defined mathematically by their power spectral density S(f), which describes how energy is distributed across the frequency spectrum as frequency (f) increases:
+
+<Formula>
+Power spectral density: S(f) ∝ 1 / (f^γ)
+Power change per octave (dB) = −10 × γ × log10(2)
+Power change per decade (dB) = −10 × γ
+</Formula>
+
+Where:
+- **f** is the sound frequency in Hertz (Hz).
+- **γ** (gamma) is the spectral exponent: 0 for white noise, 1 for pink noise, and 2 for brown (Brownian) noise.
+- **Octave slope** indicates power drop each time frequency doubles (e.g. from 500 Hz to 1,000 Hz).
+- **Decade slope** indicates power drop each time frequency multiplies tenfold (e.g. from 100 Hz to 1,000 Hz).
+
+## Worked example: Pink noise synthesis
+
+Selecting pink noise applies a spectral exponent of γ = 1:
+
+<WorkedExample slug="noise-generator" inputs={{ color: 'pink' }} />
+
+1. Spectral slope: −10 × 1 × log10(2) ≈ **−3.01 dB per octave** (−10 dB per decade).
+2. Because each musical octave spans twice the frequency width of the one below it, dropping power by 3 dB per octave yields **equal total acoustic power in every octave band**.
+3. The human auditory system hears this balanced distribution as warm, relaxing, and reminiscent of steady rainfall or rustling leaves.
+
+## Comparison of noise colors
+
+| Noise color | Exponent (γ) | Slope per octave | Auditory character | Common use case |
+|---|---|---|---|---|
+| White noise | 0 | 0 dB/oct | Crisp, hissy, like steady television static | Sound masking in loud offices; tinnitus relief |
+| Pink noise | 1 | −3 dB/oct | Warm, balanced, like steady rainfall or rushing stream | Sleep soundscapes; study focus; audio equipment calibration |
+| Brown noise | 2 | −6 dB/oct | Deep, heavy, like a distant waterfall or airplane cabin | Deep relaxation; meditation; soothing restless sleep |
+
+## Safe listening practices
+
+- **Keep volume below conversation level**: Aim for a volume equivalent to a quiet library or gentle shower (under 60 dBA).
+- **Use sleep timers for overnight rest**: If you use sound to fall asleep, our built-in timer automatically ramps down the volume over the final 60 seconds so silence does not abruptly wake you.
+- **Protect children and infants**: Pediatric ear canals amplify higher frequencies. Keep sound machines on the opposite side of the room from a baby’s crib at low settings.

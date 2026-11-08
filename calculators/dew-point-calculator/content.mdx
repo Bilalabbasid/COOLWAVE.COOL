@@ -1,0 +1,84 @@
+export const howTo = [
+  'Enter the air temperature from your thermometer or local weather report.',
+  'Enter the relative humidity percentage (1% to 100%) from your hygrometer.',
+  'Choose your preferred temperature unit (°F or °C).',
+  'Read the calculated dew point temperature, the NWS summer comfort category, and the air-to-dew-point spread.',
+];
+
+export const faq = [
+  {
+    q: 'What is a comfortable dew point temperature?',
+    a: 'Most people feel comfortable when the dew point is 55 °F (13 °C) or lower. The National Weather Service considers dew points between 55 °F and 65 °F to be sticky, while dew points of 65 °F or higher feel increasingly muggy and oppressive.',
+  },
+  {
+    q: 'Why is dew point a better measure of humidity than relative humidity?',
+    a: 'Relative humidity changes whenever temperature rises or falls, even if the total water vapor stays unchanged. The dew point directly reflects the absolute moisture content in the air and remains constant throughout the day unless a new air mass arrives.',
+  },
+  {
+    q: 'Can the dew point ever exceed the air temperature?',
+    a: 'No. When air cools to its dew point, it reaches 100% saturation. Any additional cooling forces water vapor to condense out as liquid water (dew, fog, or rain), so dew point cannot rise above the dry-bulb air temperature.',
+  },
+  {
+    q: 'What dew point indicates high mold risk indoors?',
+    a: 'An indoor dew point of 55 °F to 60 °F or higher creates conditions where cool surfaces, such as exterior walls and window panes, drop below saturation and form condensation, promoting mold growth.',
+  },
+  {
+    q: 'What is the dew point spread?',
+    a: 'The dew point spread (or depression) is the difference between dry-bulb air temperature and the dew point. A narrow spread of 5 °F or less indicates near-saturated air with high fog or dew probability, whereas a wide spread indicates dry air.',
+  },
+];
+
+The dew point is the temperature to which air must cool at constant pressure to reach 100% relative humidity, or saturation. Once the air cools below this threshold, moisture condenses out of the gas phase into water droplets, forming morning dew, fog, or condensation on cold surfaces.
+
+Unlike relative humidity, which swings dramatically between a cool morning and a warm afternoon as the air expands, dew point measures the actual physical density of water vapor. That makes it meteorologists' preferred indicator of human thermal comfort and humidity stress.
+
+## The dew point formula (Magnus approximation)
+
+This calculator computes saturation vapor pressure and dew point using the Magnus-Tetens relationship with the Alduchov and Eskridge (1996) coefficients, fitted for air temperatures from −40 °C to 50 °C (−40 °F to 122 °F).
+
+<Formula>
+Saturation vapor pressure: es = 6.1094 × exp((17.625 × T) / (243.04 + T))
+Actual vapor pressure: e = es × (RH / 100)
+Dew point: Td = (243.04 × ln(e / 6.1094)) / (17.625 − ln(e / 6.1094))
+</Formula>
+
+Where:
+- **T** is the ambient dry-bulb temperature in degrees Celsius (°C).
+- **RH** is relative humidity expressed as a percentage (1% to 100%).
+- **e** and **es** are vapor pressures expressed in hectopascals (hPa).
+- **Td** is the resulting dew point in degrees Celsius (°C), which is converted to Fahrenheit for imperial display.
+
+## Worked example: 80 °F at 50% relative humidity
+
+Consider an afternoon temperature of 80 °F with a relative humidity reading of 50%.
+
+<WorkedExample slug="dew-point-calculator" inputs={{ temp: 80, rh: 50 }} />
+
+1. Convert temperature to Celsius: 80 °F is approximately 26.67 °C.
+2. Saturation vapor pressure es = 6.1094 × exp((17.625 × 26.67) / (243.04 + 26.67)) ≈ 35.0 hPa.
+3. Actual vapor pressure e = 35.0 × 0.50 ≈ 17.4 hPa.
+4. Solving the inverse logarithmic equation produces a dew point of **15.4 °C (59.7 °F)**.
+5. The air temperature minus dew point spread is **20.3 °F (11.3 °C)**, and the NWS classifies this range as **Becoming sticky**.
+
+## Interpreting the National Weather Service comfort scale
+
+The National Weather Service (NWS) categorizes summer dew point readings into clear comfort tiers that describe how muggy conditions feel during physical activity:
+
+| Dew point (°F) | Dew point (°C) | NWS perception and comfort level |
+|---|---|---|
+| Less than 55 °F | Below 13 °C | Dry and comfortable; sweat evaporates freely |
+| 55 °F to 64 °F | 13 °C to 18 °C | Becoming sticky; noticeable evening mugginess |
+| 65 °F to 69 °F | 18 °C to 21 °C | Oppressive; noticeable moisture and sweat accumulation |
+| 70 °F to 79 °F | 21 °C to 26 °C | Very humid and oppressive; heavy heat stress outdoors |
+| 80 °F and above | 27 °C and higher | Extremely oppressive and rare; dangerous heat burden |
+
+## Indoor moisture and condensation prevention
+
+When moist indoor air encounters a surface at or below its dew point, water condenses on the cold material. In winter, window glass and uninsulated exterior wall corners frequently dip below the indoor dew point, leading to peeling paint, wood rot, and black mold.
+
+To prevent indoor condensation and maintain indoor air quality:
+- Keep indoor relative humidity between 30% and 50%, as recommended by the U.S. Environmental Protection Agency (EPA).
+- Run kitchen and bathroom exhaust fans during cooking and showering to expel moisture outside.
+- When outdoor temperatures drop, lower humidistat settings to reduce the indoor dew point below window surface temperatures.
+
+For hot summer days where heat and humidity compound, check our <CalcLink slug="heat-index-calculator">heat index calculator</CalcLink> to measure apparent temperature and heat safety thresholds. In cold seasons, use the <CalcLink slug="wind-chill-calculator">wind chill calculator</CalcLink> to assess exposed skin cooling rates.

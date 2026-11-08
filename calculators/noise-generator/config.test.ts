@@ -106,7 +106,12 @@ describe('generators', () => {
   it('brown noise stays bounded (leaky integrator does not drift)', () => {
     const s = new Float32Array(FS * 30);
     fillBrown(s, seededRandom(3));
-    expect(Math.max(...s.map(Math.abs))).toBeLessThan(200);
+    let max = 0;
+    for (let i = 0; i < s.length; i++) {
+      const val = Math.abs(s[i]);
+      if (val > max) max = val;
+    }
+    expect(max).toBeLessThan(200);
   });
   it('is repeatable with the same seed', () => {
     expect(noise('pink', 1, 5)).toEqual(noise('pink', 1, 5));

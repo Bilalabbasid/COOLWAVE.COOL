@@ -4,7 +4,12 @@ import type { CalculatorConfig } from '@/lib/engine/types';
 export const CALCULATOR_LOADERS: Record<string, () => Promise<{ default: CalculatorConfig }>> = {
   'btu-calculator': () => import('./btu-calculator/config'),
   'btu-to-watts-converter': () => import('./btu-to-watts-converter/config'),
+  'dew-point-calculator': () => import('./dew-point-calculator/config'),
+  'duct-size-calculator': () => import('./duct-size-calculator/config'),
   'electricity-cost-calculator': () => import('./electricity-cost-calculator/config'),
   'heat-index-calculator': () => import('./heat-index-calculator/config'),
+  'noise-generator': () => import('./noise-generator/config'),
   'space-heater-cost-calculator': () => import('./space-heater-cost-calculator/config'),
+  'watts-to-kwh-calculator': () => import('./watts-to-kwh-calculator/config'),
+  'wind-chill-calculator': () => import('./wind-chill-calculator/config'),
 };

@@ -1,5 +1,19 @@
 [
   {
+    "post": "what-is-dew-point",
+    "kind": "featured",
+    "file": "what-is-dew-point.webp",
+    "prompt": "Morning dew droplets resting cleanly on delicate green blades of grass at dawn, pale morning sunlight, soft focus, minimal and airy, cool blue and teal palette, no text, no logos, no people",
+    "alt": "Dew droplets on blades of grass at sunrise in soft blue morning light"
+  },
+  {
+    "post": "what-is-dew-point",
+    "kind": "inline",
+    "file": "what-is-dew-point-inline.webp",
+    "prompt": "Clear water condensation droplets bead on the outside of a chilled drinking glass resting on a clean wooden windowsill in gentle daylight, cool blue and teal tones, minimal, no text, no logos, no people",
+    "alt": "Condensation droplets on the outside of a cold glass on a windowsill in daylight"
+  },
+  {
     "post": "what-is-heat-index",
     "kind": "featured",
     "file": "what-is-heat-index.webp",

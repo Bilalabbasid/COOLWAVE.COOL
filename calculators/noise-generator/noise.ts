@@ -11,12 +11,14 @@ export const SPECTRAL_EXPONENT: Record<NoiseColor, number> = { white: 0, pink: 1
 
 /** Change in power per doubling of frequency, in dB: −10·γ·log10(2). Pink ≈ −3.01 dB, brown ≈ −6.02 dB. */
 export function slopePerOctave(color: NoiseColor): number {
-  return -10 * SPECTRAL_EXPONENT[color] * Math.log10(2);
+  const s = -10 * SPECTRAL_EXPONENT[color] * Math.log10(2);
+  return Object.is(s, -0) ? 0 : s;
 }
 
 /** Change in power per tenfold increase in frequency, in dB: −10·γ. */
 export function slopePerDecade(color: NoiseColor): number {
-  return -10 * SPECTRAL_EXPONENT[color];
+  const s = -10 * SPECTRAL_EXPONENT[color];
+  return Object.is(s, -0) ? 0 : s;
 }
 
 /** Small, fast seeded PRNG (mulberry32) for repeatable tests. */

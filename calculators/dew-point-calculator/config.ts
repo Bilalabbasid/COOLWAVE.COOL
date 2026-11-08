@@ -34,7 +34,7 @@ const config: CalculatorConfig = {
   h1: 'Dew Point Calculator',
   metaTitle: 'Dew Point Calculator: From Temperature & RH | CoolWave',
   metaDescription:
-    'Calculate the dew point from air temperature and relative humidity with the Magnus formula, in °F or °C, and see how muggy it feels on the NWS comfort scale.',
+    'Calculate the dew point from temperature and relative humidity with the Magnus formula in °F or °C, and see how muggy it feels on the NWS comfort scale.',
   category: 'weather-heat',
   shortDescription: 'The temperature at which air becomes saturated and dew or condensation forms, from air temperature and relative humidity.',
   primaryKeyword: 'dew point calculator',

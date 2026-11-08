@@ -1,0 +1,79 @@
+export const howTo = [
+  'Enter the air temperature from your outdoor thermometer or weather forecast (at or below 50 °F or 10 °C).',
+  'Enter the sustained wind speed (above 3 mph or 5 km/h).',
+  'Choose your preferred units (°F and mph, or °C and km/h).',
+  'Read the calculated wind chill temperature, the Environment Canada frostbite hazard level, and the estimated time to frostbite on exposed skin.',
+];
+
+export const faq = [
+  {
+    q: 'At what temperature does wind chill start to apply?',
+    a: 'The National Weather Service and Environment Canada only calculate wind chill for air temperatures at or below 50 °F (10 °C) and sustained winds exceeding 3 mph (5 km/h). In warmer weather, wind provides cooling without creating dangerous convective chill.',
+  },
+  {
+    q: 'Can wind chill freeze water pipes if the air is 35 °F?',
+    a: 'No. Wind chill cannot cool an object below the actual dry-bulb air temperature. If the air is 35 °F with a 20 °F wind chill, water in pipes will cool down to 35 °F faster because of the wind, but it will never freeze because 35 °F is above the freezing point of water.',
+  },
+  {
+    q: 'How fast can frostbite happen in extreme wind chill?',
+    a: 'When the wind chill drops below −18 °F (−28 °C), frostbite can occur within 30 minutes on exposed skin. Under severe conditions below −40 °F (−40 °C), skin can freeze in 5 to 10 minutes, and under −55 °F in less than 2 minutes.',
+  },
+  {
+    q: 'Why was the wind chill formula updated in 2001?',
+    a: 'The original 1945 Siple-Passel formula measured the freezing rate of water inside plastic cylinders in Antarctica, which overestimated cold on human skin. In 2001, the Joint Action Group for Temperature Indices (JAG/TI) created a biological model based on human facial heat transfer in a wind tunnel.',
+  },
+  {
+    q: 'Does wind chill affect car engines and machinery?',
+    a: 'Wind chill causes a warm car engine or radiator to cool down to the ambient air temperature more quickly, but it will never drop the engine temperature below the thermometer reading. Engine block heaters protect against the true air temperature, not the wind chill.',
+  },
+];
+
+Wind chill describes how cold outdoor air feels on exposed human skin when wind speeds accelerate heat loss. In calm winter air, your body forms a thin insulating layer of warmed air just above your skin. Wind sweeps this boundary layer away, speeding convective heat transfer and dramatically increasing the risk of frostbite and hypothermia.
+
+This calculator implements the official 2001 Wind Chill Temperature Index adopted jointly by the U.S. National Weather Service (NWS) and Environment and Climate Change Canada (ECCC).
+
+## The official 2001 wind chill formula
+
+The JAG/TI wind chill index calculates apparent cold based on air temperature measured in the shade and wind velocity measured at the standard meteorological anemometer height of 10 meters (33 feet):
+
+<Formula>
+Imperial (°F, mph): Wind chill = 35.74 + 0.6215 × T − 35.75 × (V^0.16) + 0.4275 × T × (V^0.16)
+Metric (°C, km/h): Wind chill = 13.12 + 0.6215 × T − 11.37 × (V^0.16) + 0.3965 × T × (V^0.16)
+</Formula>
+
+Where:
+- **T** is ambient air temperature in °F (≤ 50 °F) or °C (≤ 10 °C).
+- **V** is sustained wind speed in miles per hour (≥ 3 mph) or kilometers per hour (≥ 5 km/h).
+- The exponent **0.16** accounts for the non-linear relationship between wind speed and facial skin cooling.
+
+## Worked example: 0 °F with a 15 mph wind
+
+Consider a mid-winter day with a thermometer reading of 0 °F and a sustained northwest wind of 15 mph:
+
+<WorkedExample slug="wind-chill-calculator" inputs={{ temp: 0, wind: 15 }} />
+
+1. Wind velocity term: 15^0.16 ≈ 1.542.
+2. Wind chill equation: 35.74 + 0 − (35.75 × 1.542) + 0 = 35.74 − 55.13 ≈ **−19 °F (−29 °C)**.
+3. The moving air makes the conditions feel **19 °F colder** than the still air temperature.
+4. Environment Canada classifies this level as **Moderate risk**, where frostbite is possible with prolonged outdoor exposure.
+
+## Frostbite risk and time-to-freeze thresholds
+
+Environment and Climate Change Canada provides standardized danger categories based on the wind chill equivalent temperature:
+
+| Wind chill range (°F) | Wind chill range (°C) | ECCC risk category | Time for exposed skin to freeze |
+|---|---|---|---|
+| 32 °F to 14 °F | 0 °C to −10 °C | Low | Frostbite not expected |
+| 13 °F to −18 °F | −10 °C to −28 °C | Moderate | Possible with prolonged exposure |
+| −19 °F to −40 °F | −28 °C to −40 °C | High | 10 to 30 minutes |
+| −41 °F to −54 °F | −40 °C to −48 °C | Very high | 5 to 10 minutes |
+| −55 °F to −67 °F | −48 °C to −55 °C | Severe | 2 to 5 minutes |
+| Below −67 °F | Below −55 °C | Extreme | Less than 2 minutes |
+
+## Winter exposure and hypothermia safety
+
+- **Dress in dry layers**: Wear a moisture-wicking base layer against your skin, an insulating fleece or wool mid-layer, and a wind-blocking, waterproof outer shell. Wet clothing loses 90% of its insulating capability.
+- **Cover exposed extremities**: The nose, ears, cheeks, fingers, and toes have the lowest blood volume during cold-induced vasoconstriction and are the first sites to freeze. Wear mittens rather than gloves to share finger warmth.
+- **Factor in sunlight**: The official wind chill index assumes clear night conditions. Bright daytime sunshine can raise perceived warmth by 10 °F to 18 °F (6 °C to 10 °C).
+
+For summer weather conditions where heat and humidity compound, use our <CalcLink slug="heat-index-calculator">heat index calculator</CalcLink> or <CalcLink slug="dew-point-calculator">dew point calculator</CalcLink> to gauge apparent temperature and mugginess.

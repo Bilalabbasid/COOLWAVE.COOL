@@ -1,0 +1,83 @@
+export const howTo = [
+  'Enter the design airflow through the duct in cubic feet per minute (CFM) or cubic meters per hour (m³/h).',
+  'Select your duct type (supply or return, rigid sheet metal or flexible duct) to load ACCA Manual D recommended air velocities.',
+  'Enter an optional rectangular duct height if you plan to install rectangular trunk lines.',
+  'Read the exact round diameter, the standard rounded-up duct size, the resulting air speed, and equal-area rectangular dimensions.',
+];
+
+export const faq = [
+  {
+    q: 'How do you calculate round duct size from CFM?',
+    a: 'Divide airflow in CFM by your target air velocity in feet per minute (FPM) to find cross-sectional area in square feet. Then calculate round diameter using the area formula: Diameter = √(4 × Area / π) × 12 inches.',
+  },
+  {
+    q: 'What is the recommended air velocity for residential supply ducts?',
+    a: 'ACCA Manual D recommends an air velocity of 700 FPM for rigid metal supply trunks and 600 FPM for flexible supply trunks and supply branches to minimize noise and static pressure drop.',
+  },
+  {
+    q: 'What size duct is required for 400 CFM of airflow?',
+    a: 'At the standard Manual D supply trunk velocity of 700 FPM, 400 CFM requires a 10.2-inch round duct, which rounds up to a standard 11-inch or 12-inch duct diameter.',
+  },
+  {
+    q: 'Why should flexible ducts be sized larger than rigid metal ducts?',
+    a: 'Flexible ductwork has internal wire ridges and sag that create higher frictional resistance and turbulence than smooth sheet metal. Manual D caps flexible duct air velocity lower (600 FPM recommended, 700 FPM maximum) to prevent noise and excessive fan strain.',
+  },
+  {
+    q: 'What happens if HVAC ducts are sized too small?',
+    a: 'Undersized ducts force air velocities above 900 FPM, producing loud whistling and rushing noises at grilles, high static pressure on the blower motor, reduced airflow to distant rooms, and premature equipment failure.',
+  },
+];
+
+Proper duct sizing ensures that conditioned air reaches every room quietly and efficiently without overworking your HVAC blower. If a duct is too small, air velocity spikes, creating whistling noises and restrictive static pressure. If a duct is too large, installation costs increase needlessly and air delivery velocity may be too sluggish to mix room air effectively.
+
+This calculator uses the velocity sizing method and residential air velocity standards from the Air Conditioning Contractors of America (ACCA) Manual D.
+
+## Duct sizing formula (velocity method)
+
+Airflow (Q), air velocity (V), and cross-sectional duct area (A) are linked by the continuity equation:
+
+<Formula>
+Area (ft²) = Airflow (CFM) ÷ Air velocity (ft/min)
+Round diameter (inches) = √(4 × Area / π) × 12
+Equivalent rectangular width (inches) = Area (in²) ÷ Rectangular height (inches)
+</Formula>
+
+Where:
+- **CFM** is airflow in cubic feet per minute.
+- **V** is the design air velocity in feet per minute (FPM).
+- **Diameter** is round inside duct diameter in inches.
+- **Rectangular dimensions** represent an open cross-sectional area equal to the round duct.
+
+## Worked example: 400 CFM rigid supply trunk
+
+A central 3-ton air conditioner delivering airflow through a main rigid metal supply trunk carrying 400 CFM to a zone:
+
+<WorkedExample slug="duct-size-calculator" inputs={{ airflow: 400, ductType: 'supply-trunk-rigid', rectDepth: 8 }} />
+
+1. ACCA Manual D recommends **700 ft/min** for a rigid metal supply trunk.
+2. Required cross-sectional area: 400 CFM ÷ 700 FPM = 0.5714 ft² (82.3 in²).
+3. Exact round duct diameter: √(4 × 0.5714 / π) × 12 ≈ **10.2 inches**.
+4. Sized up to the next whole inch yields an **11-inch duct**, where air travels at a quiet **606 ft/min**.
+5. The absolute smallest allowable duct at the 900 FPM Manual D maximum threshold is **9.0 inches**.
+6. For a rectangular duct with an 8-inch depth, the required width is 82.3 ÷ 8 ≈ **10.3 inches**.
+
+## ACCA Manual D residential air velocity limits
+
+The Air Conditioning Contractors of America (ACCA) Manual D establishes design velocity boundaries to keep residential duct systems quiet and balanced:
+
+| Duct application and material | Recommended velocity (FPM) | Maximum allowable velocity (FPM) |
+|---|---|---|
+| Supply trunk, rigid sheet metal | 700 FPM | 900 FPM |
+| Supply trunk, flexible duct | 600 FPM | 700 FPM |
+| Supply branch, rigid sheet metal | 600 FPM | 900 FPM |
+| Supply branch, flexible duct | 600 FPM | 700 FPM |
+| Return trunk, rigid sheet metal | 600 FPM | 700 FPM |
+| Return trunk, flexible duct | 600 FPM | 700 FPM |
+| Return branch, rigid sheet metal | 400 FPM | 700 FPM |
+| Return branch, flexible duct | 400 FPM | 700 FPM |
+
+## Practical duct design rules
+
+- **Account for rectangular friction**: A rectangular duct with the same open square inches as a round duct has greater perimeter surface area, which creates higher friction against passing air. When replacing round pipe with rectangular trunking, increase cross-sectional area by 10% to 15% or consult an equivalent round-to-rectangular friction chart.
+- **Keep flex duct straight and taut**: Excessive bends, compressed sections, and drooping runs in flexible ductwork can reduce effective airflow by up to 50%. Manual D recommends pulling flexible duct tight (no more than 4% longitudinal slack) and supporting it every 4 feet.
+- **Match tonnage to total CFM**: In typical residential air conditioning, blowers deliver roughly 350 to 400 CFM per ton of cooling. Use our <CalcLink slug="btu-calculator">BTU calculator</CalcLink> to verify total system capacity and determine total supply trunk sizing.

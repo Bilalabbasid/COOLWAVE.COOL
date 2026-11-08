@@ -1,0 +1,162 @@
+[
+  {
+    "u": "https://www.energystar.gov/products/room_air_conditioners",
+    "status": 200
+  },
+  {
+    "u": "https://www.acca.org/standards/manual-j",
+    "status": 200
+  },
+  {
+    "u": "https://www.nist.gov/pml/special-publication-811",
+    "status": 200
+  },
+  {
+    "u": "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8",
+    "status": 200
+  },
+  {
+    "u": "https://www.eia.gov/energyexplained/units-and-calculators/british-thermal-units.php",
+    "status": 200
+  },
+  {
+    "u": "https://doi.org/10.1175/1520-0450(1996)035%3C0601:IMFAOS%3E2.0.CO;2",
+    "status": 200
+  },
+  {
+    "u": "https://doi.org/10.1175/BAMS-86-2-225",
+    "status": 200
+  },
+  {
+    "u": "https://www.weather.gov/arx/why_dewpoint_vs_humidity",
+    "status": 200
+  },
+  {
+    "u": "https://www.weather.gov/lmk/humidity",
+    "status": 200
+  },
+  {
+    "u": "https://www.ahrinet.org/sites/default/files/2022-10/manual%20D%20calculation.pdf",
+    "status": 200
+  },
+  {
+    "u": "https://www.acca.org/standards/manual-d",
+    "status": 200
+  },
+  {
+    "u": "https://basc.pnnl.gov/library/advanced-strategy-guideline-air-distribution-basics-and-duct-design",
+    "status": 200
+  },
+  {
+    "u": "https://www.eia.gov/energyexplained/electricity/measuring-electricity.php",
+    "status": 200
+  },
+  {
+    "u": "https://www.eia.gov/energyexplained/use-of-energy/electricity-use-in-homes.php",
+    "status": 200
+  },
+  {
+    "u": "https://www.eia.gov/electricity/monthly/epm_table_grapher.php?t=epmt_5_6_a",
+    "status": 200
+  },
+  {
+    "u": "https://www.ofgem.gov.uk/energy-price-cap",
+    "status": 200
+  },
+  {
+    "u": "https://www.wpc.ncep.noaa.gov/html/heatindex_equation.shtml",
+    "status": 200
+  },
+  {
+    "u": "https://www.weather.gov/safety/heat-index",
+    "status": 200
+  },
+  {
+    "u": "https://www.weather.gov/ama/heatindex",
+    "status": 200
+  },
+  {
+    "u": "https://www.weather.gov/media/ffc/ta_htindx.PDF",
+    "status": 200
+  },
+  {
+    "u": "https://www.nature.com/articles/258317a0",
+    "status": 200
+  },
+  {
+    "u": "https://www.musicdsp.org/en/latest/Filters/76-pink-noise-filter.html",
+    "status": 200
+  },
+  {
+    "u": "https://pubmed.ncbi.nlm.nih.gov/33007706/",
+    "status": 200
+  },
+  {
+    "u": "https://pubmed.ncbi.nlm.nih.gov/24590753/",
+    "status": 200
+  },
+  {
+    "u": "https://www.nidcd.nih.gov/health/noise-induced-hearing-loss",
+    "status": 200
+  },
+  {
+    "u": "https://www.w3.org/TR/webaudio/",
+    "status": 200
+  },
+  {
+    "u": "https://www.cpsc.gov/s3fs-public/CPSCStaffAssessmentonPortableElectricHeatersFebruary2023.pdf",
+    "status": 200
+  },
+  {
+    "u": "https://www.cpsc.gov/Newsroom/News-Releases/2024/Stay-Safe-While-Staying-Warm-This-Winter-CPSC-Warns-Consumers-to-be-Cautious-When-Using-Generators-Furnaces-and-Space-Heaters",
+    "status": 200
+  },
+  {
+    "u": "https://www.nfpa.org/education-and-research/home-fire-safety/heating",
+    "status": 200
+  },
+  {
+    "u": "https://www.energystar.gov/products/air_source_heat_pumps",
+    "status": 200
+  },
+  {
+    "u": "https://www.weather.gov/safety/cold-wind-chill-chart",
+    "status": 200
+  },
+  {
+    "u": "https://www.weather.gov/media/safety/windchillchart3.pdf",
+    "status": 200
+  },
+  {
+    "u": "https://www.weather.gov/epz/wxcalc_windchill",
+    "status": 200
+  },
+  {
+    "u": "https://www.canada.ca/en/services/environment/weather/severeweather/wind-chill-index.html",
+    "status": 200
+  },
+  {
+    "u": "https://weather.gc.ca/windchill/wind_chill_e.html",
+    "status": 200
+  },
+  {
+    "u": "https://forecast.weather.gov/glossary.php?word=dew%20point",
+    "status": 200
+  },
+  {
+    "u": "https://www.weather.gov/media/epz/wxcalc/vaporPressure.pdf",
+    "status": 200
+  },
+  {
+    "u": "https://www.epa.gov/mold/brief-guide-mold-moisture-and-your-home",
+    "status": 200
+  },
+  {
+    "u": "https://www.weather.gov/news/211009-WBGT",
+    "status": 200
+  },
+  {
+    "u": "https://www.cdc.gov/niosh/heat-stress/about/illnesses.html",
+    "status": 200
+  }
+]

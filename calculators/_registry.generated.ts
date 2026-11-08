@@ -4,12 +4,22 @@ import c0 from './btu-calculator/config';
 import * as m0 from './btu-calculator/content.mdx';
 import c1 from './btu-to-watts-converter/config';
 import * as m1 from './btu-to-watts-converter/content.mdx';
-import c2 from './electricity-cost-calculator/config';
-import * as m2 from './electricity-cost-calculator/content.mdx';
-import c3 from './heat-index-calculator/config';
-import * as m3 from './heat-index-calculator/content.mdx';
-import c4 from './space-heater-cost-calculator/config';
-import * as m4 from './space-heater-cost-calculator/content.mdx';
+import c2 from './dew-point-calculator/config';
+import * as m2 from './dew-point-calculator/content.mdx';
+import c3 from './duct-size-calculator/config';
+import * as m3 from './duct-size-calculator/content.mdx';
+import c4 from './electricity-cost-calculator/config';
+import * as m4 from './electricity-cost-calculator/content.mdx';
+import c5 from './heat-index-calculator/config';
+import * as m5 from './heat-index-calculator/content.mdx';
+import c6 from './noise-generator/config';
+import * as m6 from './noise-generator/content.mdx';
+import c7 from './space-heater-cost-calculator/config';
+import * as m7 from './space-heater-cost-calculator/content.mdx';
+import c8 from './watts-to-kwh-calculator/config';
+import * as m8 from './watts-to-kwh-calculator/content.mdx';
+import c9 from './wind-chill-calculator/config';
+import * as m9 from './wind-chill-calculator/content.mdx';
 
 export const CALCULATOR_ENTRIES: CalculatorEntry[] = [
   { config: c0, content: m0 as unknown as CalculatorEntry['content'] },
@@ -17,4 +27,9 @@ export const CALCULATOR_ENTRIES: CalculatorEntry[] = [
   { config: c2, content: m2 as unknown as CalculatorEntry['content'] },
   { config: c3, content: m3 as unknown as CalculatorEntry['content'] },
   { config: c4, content: m4 as unknown as CalculatorEntry['content'] },
+  { config: c5, content: m5 as unknown as CalculatorEntry['content'] },
+  { config: c6, content: m6 as unknown as CalculatorEntry['content'] },
+  { config: c7, content: m7 as unknown as CalculatorEntry['content'] },
+  { config: c8, content: m8 as unknown as CalculatorEntry['content'] },
+  { config: c9, content: m9 as unknown as CalculatorEntry['content'] },
 ];
